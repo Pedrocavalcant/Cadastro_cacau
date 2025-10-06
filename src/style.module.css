@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Afacad&family=Baloo&display=swap');
+
+:root {
+    --color-green: #2c4628;
+    --color-dark: #1c1f26;
+    --color-orange: #c95b00;
+    --color-gray: #535f50;
+    --color-lightdark: rgba(28, 31, 38, 0.95);
+    --color-white: #ffffff;
+    --color-input: #CD600399;
+    --color-icon: #CB5E00;
+    --color-black: #000000;
+    --color-button: #CD6003;
+
+    --title-font: 'ADLaM Display', cursive;
+    --body-font: 'Afacad', sans-serif;
+    --botton-font: 'Baloo', cursive;
+
+}
