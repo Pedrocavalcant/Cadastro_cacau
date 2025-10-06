@@ -1,19 +1,18 @@
 .containerInput{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-    height: 100%;
-    width: 100%;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 100%;
+  width: 100%;
 }
 
 .labelTitle{
-    font-family: var(--body-font);
-    color: var(--color-black);
-    font-size: 18px;
-    margin-top: 5px;
-    padding-left: 12px;
+  font-family: var(--body-font);
+  color: var(--color-black);
+  font-size: 18px;
+  margin-top: 5px;
+  padding-left: 12px;
 }
 
 .field {
@@ -23,30 +22,53 @@
   width: 100%;
   max-width: 600px;
   margin-left: 150px;
+  margin-bottom: 6px; /* espaçamento entre campos */
 }
 
-input{
+/* --- wrapper para colocar o ícone dentro do input --- */
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* ícone posicionado dentro do input (à esquerda) */
+.icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-icon);
+  pointer-events: none; /* evita clique no ícone atrapalhar o foco do input */
+}
+
+.input{
   width: 80%; 
   height: 45px;
   padding: 12px;
+  padding-left: 38px; 
   font-size: 16px;
   border-radius: 21px;
-  border: none;
+  border: 1px solid transparent; 
   outline: none;
   background-color: var(--color-input);
-  
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.input:focus {
+  border-color: var(--color-dark);
+  box-shadow: 0 0  3px var(--color-orange);
 }
 
 .buttonNext{
   align-items: flex-end;
-  margin-top: 50px;   
-  margin-left: 200px;     
+  margin-top: 30px;   
+  margin-left: 350px;     
   font-family: var(--botton-font);
   font-size: 22px;
   background-color: var(--color-button);
   color: var(--color-white);
   border-radius: 25px;
-  padding: 10px 25px;
+  padding-inline: 25px;
   border: none;
   cursor: pointer;
   transition: 0.3s ease;

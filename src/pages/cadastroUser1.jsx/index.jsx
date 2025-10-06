@@ -4,56 +4,70 @@ import cacau from '../../public/cacau.png'
 import Header from '../../components/Header'
 import Body from '../../components/Body'
 import style from './style.module.css'
+import { LockKeyhole, Mail, PencilLine, User } from 'lucide-react'
 
 const WelcomeLeft = () => {
   return (
     <>
-        <img src={Logo} alt='Logo' />
-        <div>
-            <h2 style={{ lineHeight: 1.1}}>Bem-vindo</h2>
-            <p style={{opacity:.8}}>Faça seu cadastro de forma fácil e rápida</p>
-        </div>
+      <img src={Logo} alt='Logo' />
+      <div>
+        <h2 style={{ lineHeight: 1.1 }}>Bem-vindo</h2>
+        <p style={{ opacity: .8 }}>Faça seu cadastro de forma fácil e rápida</p>
+      </div>
     </>
   )
 }
 
 export default function CadastroCliente() {
-    return(
-
+  return (
     <>
-        <Header/>
-        <Body left={<WelcomeLeft />} bgImage={cacau}>
-            <div className={style.containerInput}> 
+      <Header />
+      <Body left={<WelcomeLeft />} bgImage={cacau}>
+        <div className={style.containerInput}>
 
-                <div className={style.field}>
-                    <label className={style.labelTitle}htmlFor="nome">Nome Completo</label>
-                    <input clasName={style.input} type="text" name="nome" id="nome" />
-                </div>
-
-                <div className={style.field}>
-                    <label className={style.labelTitle} htmlFor="usuario">Usuário</label>
-                    <input clasName={style.input} type="text" name='usuario' id='usuario' />
-                </div>
-
-                <div className={style.field}>
-                    <label className={style.labelTitle} htmlFor="email">E-mail</label>
-                    <input clasName={style.input} type="text" name="email" id="email" />
-                </div>
-
-                <div className={style.field}>
-                    <label className={style.labelTitle} htmlFor="senha">Senha</label>
-                    <input clasName={style.input} type="text" name='senha' id='senha' />
-                </div>
-
-                <div className={style.field}>
-                    <label className={style.labelTitle} htmlFor="conf_senha">Confirmar Senha</label>
-                    <input clasName={style.input} type="text" name="conf_senha" id="conf_senha" />
-                </div>
-
-                <button className={style.buttonNext} type='button'>Proximo</button>
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="nome">Nome Completo</label>
+            <div className={style.inputWrapper}>
+              <PencilLine className={style.icon} size={18} />
+              <input className={style.input} type="text" name="nome" id="nome"/>
             </div>
-        </Body>
-    </>
-    )
-}
+          </div>
 
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="usuario">Usuário</label>
+            <div className={style.inputWrapper}>
+            <User className={style.icon}/>
+            <input className={style.input} type="text" name='usuario' id='usuario' />
+            </div>
+          </div>
+
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="email">E-mail</label>
+            <div className={style.inputWrapper}>
+            <Mail className={style.icon}/>
+            <input className={style.input} type="email" name="email" id="email" />
+            </div>
+          </div>
+
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="senha">Senha</label>
+            <div className={style.inputWrapper}>
+            <LockKeyhole className={style.icon}/>
+            <input className={style.input} type="password" name='senha' id='senha' />
+            </div>
+          </div>
+
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="conf_senha">Confirmar Senha</label>
+            <div className={style.inputWrapper}>
+            <LockKeyhole className={style.icon}/>
+            <input className={style.input} type="password" name="conf_senha" id="conf_senha" />
+            </div>
+          </div>
+
+          <button className={style.buttonNext} type='button'>Próximo</button>
+        </div>
+      </Body>
+    </>
+  )
+}
