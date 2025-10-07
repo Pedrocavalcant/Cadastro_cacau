@@ -5,6 +5,7 @@ import Header from '../../components/Header'
 import Body from '../../components/Body'
 import style from './style.module.css'
 import { LockKeyhole, Mail, PencilLine, User } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const WelcomeLeft = () => {
   return (
@@ -19,6 +20,7 @@ const WelcomeLeft = () => {
 }
 
 export default function CadastroCliente() {
+  const navigate = useNavigate()
   return (
     <>
       <Header />
@@ -65,7 +67,7 @@ export default function CadastroCliente() {
             </div>
           </div>
 
-          <button className={style.buttonNext} type='button'>Próximo</button>
+          <button onClick={() => navigate('/cadastro/cliente/2')} className={style.buttonNext} type='button'>Próximo</button>
         </div>
       </Body>
     </>
