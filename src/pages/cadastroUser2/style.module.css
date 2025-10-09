@@ -1,4 +1,4 @@
-.containerInput{
+.containerInput {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,12 +7,19 @@
   width: 100%;
 }
 
-.labelTitle{
+.labelTitle {
   font-family: var(--body-font);
   color: var(--color-black);
   font-size: 18px;
   margin-top: 5px;
   padding-left: 12px;
+}
+
+.containerField {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
 }
 
 .field {
@@ -23,28 +30,13 @@
   max-width: 600px;
   margin-left: 150px;
   margin-bottom: 6px; 
+  flex: 1;
 }
 
-.inputWrapper {
-  position: relative;
-  width: 100%;
-}
-
-
-.icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--color-icon);
-  pointer-events: none; 
-}
-
-.input{
+.input {
   width: 80%; 
   height: 45px;
   padding: 12px;
-  padding-left: 38px; 
   font-size: 16px;
   border-radius: 21px;
   border: 1px solid transparent; 
@@ -58,21 +50,13 @@
   box-shadow: 0 0  3px var(--color-orange);
 }
 
-.buttonNext{
-  align-items: flex-end;
-  margin-top: 30px;   
-  margin-left: 350px;     
-  font-family: var(--botton-font);
-  font-size: 22px;
-  background-color: var(--color-button);
-  color: var(--color-white);
-  border-radius: 25px;
-  padding-inline: 25px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
+
+.containerField .input {
+  width: 95%; /* aumenta o tamanho dos inputs que ficam lado a lado */
 }
 
-.buttonNext:hover {
-  background-color: #a64500;
+.containerField .field {
+  max-width: none; /* remove limite fixo de largura */
+  margin-left: 60px; /* ajusta alinhamento horizontal */
 }
+

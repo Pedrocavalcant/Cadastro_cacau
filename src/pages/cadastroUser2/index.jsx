@@ -3,6 +3,7 @@ import Logo from '../../assets/Logo.png'
 import cacau from '../../public/cacau.png'
 import Header from '../../components/Header'
 import Body from '../../components/Body'
+import style from './style.module.css'
 
 const WelcomeLeft = () => {
     return(
@@ -21,36 +22,42 @@ const CadastroCliente2 = () => {
     <div>
         <Header/>
         <Body left={<WelcomeLeft/>} bgImage={cacau}>
-            <div>
-                <div>
-                    <label htmlFor="cpf">CPF</label>
-                    <input type="text" name='cpf' id='cpf'/>
+            <div className={style.containerInput}>
+                <div className={style.field}>
+                    <label className={style.labelTitle} htmlFor="cpf">CPF</label>
+                    <input className={style.input} type="text" name='cpf' id='cpf'/>
                 </div>
 
-                <div>
-                    <label htmlFor="celular">Número de celular</label>
-                    <input type="text" name='celular' id='celular'/>
+                <div className={style.field}>
+                    <label className={style.labelTitle} htmlFor="celular">Número de celular</label>
+                    <input className={style.input} type="text" name='celular' id='celular'/>
                 </div>
 
-                <div>
-                    <label htmlFor="rua">Rua</label>
-                    <input type="text" name='rua' id='rua'/>
+                <div className={style.field}>
+                    <label className={style.labelTitle} htmlFor="rua">Rua</label>
+                    <input className={style.input} type="text" name='rua' id='rua'/>
                 </div>
 
-                <div>
-                    <div>
-                        <label htmlFor="numCasa">N° da casa</label>
-                        <input type="text" name='numCasa' id='numCasa'/>
+                <div className={style.containerField}>
+                    <div className={style.field} style={{flex: .4}}>
+                        <label className={style.labelTitle} htmlFor="numCasa">N° da casa</label>
+                        <input className={style.input} type="text" name='numCasa' id='numCasa'/>
                     </div>
-                    <div>
-                        <label htmlFor="bairro">Bairro</label>
-                        <input type="text" name='bairro' id='bairro'/>
+                    <div className={style.field} style={{flex: .6}}>
+                        <label className={style.labelTitle} htmlFor="bairro">Bairro</label>
+                        <input className={style.input} type="text" name='bairro' id='bairro'/>
                     </div>
                 </div>
 
-                <div>
-                    <div>Cidade</div>
-                    <div>UF</div>
+                <div className={style.containerField}>
+                    <div className={style.field} style={{flex: .6}}>
+                        <label className={style.labelTitle} htmlFor="cidade">Cidade</label>
+                        <input className={style.input} type="text" name='cidade' id='cidade'/>
+                    </div>
+                    <div className={style.field} style={{flex: .4}}>
+                        <label className={style.labelTitle} htmlFor="uf">UF</label>
+                        <input className={style.input} type="text" name='uf' id='uf'/>
+                    </div>
                 </div>
 
             </div>
