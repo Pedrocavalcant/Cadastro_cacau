@@ -23,7 +23,54 @@ export default function CadastroFazenda() {
     <>
       <Header/>
       <Body left={<WelcomeLeft />} bgImage={cacau}>
-        <div></div>
+        <div>
+
+          <div>
+            <div>
+              <label htmlFor="nFazenda">Nome da Fazenda</label>
+              <input type="text" />
+            </div>
+
+            <div>
+              <label htmlFor="espPredominante">Espécie Predominante</label>
+              <select name="espPredominante" id="espPredominante">
+                <option value="Forasteiro">Forasteiro</option>
+                <option value="Trinitário">Trinitário</option>
+                <option value="Criollo">Criollo</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label htmlFor="cnpj">CNPJ</label>
+              <input type="text" />
+            </div>
+
+            <div>
+              <label htmlFor="sisProdutivo">Sistema Produtivo</label>
+              <select name="sisProdutivo" id="sisProdutivo"></select>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <label htmlFor="Produtivo">Propietário</label>
+              <input type="text" />
+            </div>
+
+            <div>
+              <label htmlFor="divPlantio">Divisão de plantio</label>
+              <select name="divPlantio" id="divPlantio"></select>
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="areaCultivo">Área de cultivo</label>
+            <input type="text" />
+          </div>
+
+        </div>
       </Body>
     </>
   )
