@@ -1,67 +1,92 @@
-import React from 'react'
-import Logo from '../../assets/Logo.png'
-import cacau from '../../public/cacau.png'
-import Header from '../../components/Header'
-import Body from '../../components/Body'
-import style from './style.module.css'
+import React from "react"
+import Logo from "../../assets/Logo.png"
+import cacau from "../../public/cacau.png"
+import Header from "../../components/Header"
+import Body from "../../components/Body"
+import style from "./style.module.css"
 
 const WelcomeLeft = () => {
-    return(
-        <>
-            <img src={Logo} alt="Logo" />
-            <div>
-                <h2 style={{ lineHeight: 1.1}}>Bem-vindo</h2>
-                <p style={{ opacity: .8 }}>Faça seu cadastro de forma fácil e rápida</p>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <img src={Logo} alt="Logo" />
+      <div>
+        <h2 style={{ lineHeight: 1.1 }}>Bem-vindo</h2>
+        <p style={{ opacity: 0.8 }}>Faça seu cadastro de forma fácil e rápida</p>
+      </div>
+    </>
+  )
 }
 
 const CadastroCliente2 = () => {
   return (
     <div>
-        <Header/>
-        <Body left={<WelcomeLeft/>} bgImage={cacau}>
-            <div className={style.containerInput}>
-                <div className={style.field}>
-                    <label className={style.labelTitle} htmlFor="cpf">CPF</label>
-                    <input className={style.input} type="text" name='cpf' id='cpf'/>
-                </div>
+      <Header />
+      <Body left={<WelcomeLeft />} bgImage={cacau}>
+        <div className={style.containerInput}>
+          {/* CPF */}
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="cpf">
+              CPF
+            </label>
+            <input className={style.input} type="text" id="cpf" />
+          </div>
 
-                <div className={style.field}>
-                    <label className={style.labelTitle} htmlFor="celular">Número de celular</label>
-                    <input className={style.input} type="text" name='celular' id='celular'/>
-                </div>
+          {/* Celular */}
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="celular">
+              Número de celular
+            </label>
+            <input className={style.input} type="text" id="celular" />
+          </div>
 
-                <div className={style.field}>
-                    <label className={style.labelTitle} htmlFor="rua">Rua</label>
-                    <input className={style.input} type="text" name='rua' id='rua'/>
-                </div>
+          {/* Rua */}
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="rua">
+              Rua
+            </label>
+            <input className={style.input} type="text" id="rua" />
+          </div>
 
-                <div className={style.containerField}>
-                    <div className={style.field} style={{flex: .4}}>
-                        <label className={style.labelTitle} htmlFor="numCasa">N° da casa</label>
-                        <input className={style.input} type="text" name='numCasa' id='numCasa'/>
-                    </div>
-                    <div className={style.field} style={{flex: .6}}>
-                        <label className={style.labelTitle} htmlFor="bairro">Bairro</label>
-                        <input className={style.input} type="text" name='bairro' id='bairro'/>
-                    </div>
-                </div>
-
-                <div className={style.containerField}>
-                    <div className={style.field} style={{flex: .6}}>
-                        <label className={style.labelTitle} htmlFor="cidade">Cidade</label>
-                        <input className={style.input} type="text" name='cidade' id='cidade'/>
-                    </div>
-                    <div className={style.field} style={{flex: .4}}>
-                        <label className={style.labelTitle} htmlFor="uf">UF</label>
-                        <input className={style.input} type="text" name='uf' id='uf'/>
-                    </div>
-                </div>
-
+          {/* Nº da casa + Bairro */}
+          <div className={style.row}>
+            <div className={style.field} style={{ flex: 0.42 }}>
+              <label className={style.labelTitle} htmlFor="numCasa">
+                Nº da Casa
+              </label>
+              <input className={style.input} type="text" id="numCasa" />
             </div>
-        </Body>
+            <div className={style.field} style={{ flex: 0.58 }}>
+              <label className={style.labelTitle} htmlFor="bairro">
+                Bairro
+              </label>
+              <input className={style.input} type="text" id="bairro" />
+            </div>
+          </div>
+
+          {/* Cidade + UF */}
+          <div className={style.row}>
+            <div className={style.field} style={{ flex: 0.62 }}>
+              <label className={style.labelTitle} htmlFor="cidade">
+                Cidade
+              </label>
+              <input className={style.input} type="text" id="cidade" />
+            </div>
+            <div className={style.field} style={{ flex: 0.38 }}>
+              <label className={style.labelTitle} htmlFor="uf">
+                UF
+              </label>
+              <input className={style.input} type="text" id="uf" />
+            </div>
+          </div>
+
+          {/* Botão */}
+          <div className={style.actions}>
+            <button className={style.primaryBtn} type="button">
+              Cadastrar
+            </button>
+          </div>
+        </div>
+      </Body>
     </div>
   )
 }

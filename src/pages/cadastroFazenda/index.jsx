@@ -1,39 +1,49 @@
-import React from 'react'
-import Logo from '../../assets/Logo.png'
-import cacau from '../../public/cacau.png'
-import Header from '../../components/Header'
-import Body from '../../components/Body'
+import React from "react"
+import Logo from "../../assets/Logo.png"
+import cacau from "../../public/cacau.png"
+import Header from "../../components/Header"
+import Body from "../../components/Body"
+import style from "./style.module.css"
 
 const WelcomeLeft = () => {
-  return(
+  return (
     <>
       <img src={Logo} alt="Logo" />
       <div>
-        <h2 style={{lineHeight: 1.1}}>Cadastro de fazenda</h2>
+        <h2 style={{ lineHeight: 1.1 }}>Cadastro de fazenda</h2>
       </div>
     </>
   )
 }
 
-
-
 export default function CadastroFazenda() {
-  
   return (
     <>
-      <Header/>
+      <Header />
       <Body left={<WelcomeLeft />} bgImage={cacau}>
-        <div>
-
-          <div>
-            <div>
-              <label htmlFor="nFazenda">Nome da Fazenda</label>
-              <input type="text" />
+        <div className={style.containerInput}>
+          {/* Linha 1 */}
+          <div className={style.wrapper}>
+            <div className={style.field}>
+              <label className={style.labelTitle} htmlFor="nFazenda">
+                Nome da Fazenda
+              </label>
+              <input
+                id="nFazenda"
+                className={style.input}
+                type="text"
+                placeholder="Digite aqui..."
+              />
             </div>
 
-            <div>
-              <label htmlFor="espPredominante">Espécie Predominante</label>
-              <select name="espPredominante" id="espPredominante">
+            <div className={style.field}>
+              <label className={style.labelTitle} htmlFor="espPredominante">
+                Espécie Predominante
+              </label>
+              <select id="espPredominante" className={style.select} defaultValue="">
+                <option value="" disabled>
+                  Selecione
+                </option>
                 <option value="Forasteiro">Forasteiro</option>
                 <option value="Trinitário">Trinitário</option>
                 <option value="Criollo">Criollo</option>
@@ -41,38 +51,88 @@ export default function CadastroFazenda() {
             </div>
           </div>
 
-          <div>
-            <div>
-              <label htmlFor="cnpj">CNPJ</label>
-              <input type="text" />
+          {/* Linha 2 */}
+          <div className={style.wrapper}>
+            <div className={style.field}>
+              <label className={style.labelTitle} htmlFor="cnpj">
+                CNPJ
+              </label>
+              <input
+                id="cnpj"
+                className={style.input}
+                type="text"
+                placeholder="Digite aqui..."
+              />
             </div>
 
-            <div>
-              <label htmlFor="sisProdutivo">Sistema Produtivo</label>
-              <select name="sisProdutivo" id="sisProdutivo"></select>
+            <div className={style.field}>
+              <label className={style.labelTitle} htmlFor="sisProdutivo">
+                Sistema Produtivo
+              </label>
+              <select id="sisProdutivo" className={style.select} defaultValue="">
+                <option value="" disabled>
+                  Selecione
+                </option>
+                <option value="Pleno">Pleno</option>
+                <option value="Cabruca">Cabruca</option>
+                <option value="Agroflorestal">Agroflorestal</option>
+              </select>
             </div>
           </div>
 
-          <div>
-            <div>
-              <label htmlFor="Produtivo">Propietário</label>
-              <input type="text" />
+          {/* Linha 3 */}
+          <div className={style.wrapper}>
+            <div className={style.field}>
+              <label className={style.labelTitle} htmlFor="proprietario">
+                Proprietário
+              </label>
+              <input
+                id="proprietario"
+                className={style.input}
+                type="text"
+                placeholder="Digite aqui..."
+              />
             </div>
 
-            <div>
-              <label htmlFor="divPlantio">Divisão de plantio</label>
-              <select name="divPlantio" id="divPlantio"></select>
+            <div className={style.field}>
+              <label className={style.labelTitle} htmlFor="divPlantio">
+                Divisão do plantio
+              </label>
+              <select id="divPlantio" className={style.select} defaultValue="">
+                <option value="" disabled>
+                  Selecione
+                </option>
+                <option value="Rua e Cova">Rua e Cova</option>
+                <option value="Talhão">Talhão</option>
+                <option value="Quadras">Quadras</option>
+              </select>
             </div>
           </div>
 
-          <div>
-            <label htmlFor="areaCultivo">Área de cultivo</label>
-            <input type="text" />
+          {/* Linha 4 */}
+          <div className={style.wrapper}>
+            <div className={style.field}>
+              <label className={style.labelTitle} htmlFor="areaCultivo">
+                Área de Cultivo
+              </label>
+              <input
+                id="areaCultivo"
+                className={style.input}
+                type="text"
+                placeholder="Digite aqui..."
+              />
+            </div>
+
+            <div className={style.field} /> {/* espaço vazio para manter a grade em 2 colunas */}
           </div>
 
+          <div className={style.actions}>
+            <button type="button" className={style.primaryBtn}>
+              Avançar
+            </button>
+          </div>
         </div>
       </Body>
     </>
   )
 }
-
