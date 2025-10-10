@@ -6,6 +6,9 @@ import Home from "./pages/home/index.jsx"
 import CadastroCliente2 from "./pages/cadastroUser2/index.jsx"
 import CadastroFazenda from "./pages/cadastroFazenda/index.jsx"
 import CadastroPlanta from "./pages/cadastroPlanta/index.jsx"
+import CadastroPlanta2 from "./pages/cadastroPlanta2/index.jsx"
+import CadastroPlanta3 from "./pages/cadastroPlanta3/index.jsx"
+import CadastroPlanta4 from "./pages/cadastroPlanta4/index.jsx"
 
 
 function App() {
@@ -18,6 +21,9 @@ function App() {
       <Route path="/cadastro/cliente/2" element={<CadastroCliente2/>}/>
       <Route path="/cadastro/fazenda" element={<CadastroFazenda/>}/>
       <Route path="/cadastro/planta" element={<CadastroPlanta/>}/>
+      <Route path="/cadastro/planta/2" element={<CadastroPlanta2/>}/>
+      <Route path="/cadastro/planta/3" element={<CadastroPlanta3/>}/>
+      <Route path="/cadastro/planta/4" element={<CadastroPlanta4/>}/>
     </Routes>
     </>
   )

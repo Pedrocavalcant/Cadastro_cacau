@@ -5,6 +5,7 @@ import Header from "../../components/Header"
 import Body from "../../components/Body"
 import { Upload, QrCode } from "lucide-react"
 import style from "./style.module.css"
+import { useNavigate } from "react-router-dom"
 
 const WelcomeLeft = () => {
   return (
@@ -21,6 +22,8 @@ export default function CadastroPlanta() {
   const inputRef = useRef(null)
   const [files, setFiles] = useState([])
   const [especie, setEspecie] = useState("") // controla o select
+
+  const navigate = useNavigate()
 
   function onPick() {
     inputRef.current?.click()
@@ -106,7 +109,7 @@ export default function CadastroPlanta() {
 
           {/* Botão */}
           <div className={style.actions}>
-            <button type="button" className={style.primaryBtn}>
+            <button onClick={() => navigate("/cadastro/planta/2")} type="button" className={style.primaryBtn}>
               Avançar
             </button>
           </div>
