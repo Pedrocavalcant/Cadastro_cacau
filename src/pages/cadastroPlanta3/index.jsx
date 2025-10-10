@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import Header from "../../components/Header"
-import Body from "../../components/Body"
-import Logo from "../../assets/Logo.png"
-import cacau from "../../public/cacau.png"
-import style from "./style.module.css"
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react";
+import Header from "../../components/Header";
+import Body from "../../components/Body";
+import Logo from "../../assets/Logo.png";
+import cacau from "../../public/cacau.png";
+import style from "./style.module.css";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeLeft = () => (
   <>
@@ -13,22 +13,22 @@ const WelcomeLeft = () => (
       <h2 style={{ lineHeight: 1.1 }}>Cadastro da Planta</h2>
     </div>
   </>
-)
+);
 
 export default function CadastroPlanta3() {
   // Situação
-  const [situacao, setSituacao] = useState("doente")
-  const [doenca, setDoenca] = useState("Vassoura de Bruxa")
-  const [tratamento, setTratamento] = useState("")
+  const [situacao, setSituacao] = useState("doente");
+  const [doenca, setDoenca] = useState("Vassoura de Bruxa");
+  const [tratamento, setTratamento] = useState("");
 
   // Adubação
-  const [adubo, setAdubo] = useState("Forth frutas")
-  const [naoAdubado, setNaoAdubado] = useState(false)
-  const [dataAdubacao, setDataAdubacao] = useState("DD/MM/AA")
-  const [dataInspecao, setDataInspecao] = useState("DD/MM/AA")
-  const [obs, setObs] = useState("")
+  const [adubo, setAdubo] = useState("Forth frutas");
+  const [naoAdubado, setNaoAdubado] = useState(false);
+  const [dataAdubacao, setDataAdubacao] = useState("DD/MM/AA");
+  const [dataInspecao, setDataInspecao] = useState("DD/MM/AA");
+  const [obs, setObs] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -81,11 +81,15 @@ export default function CadastroPlanta3() {
               {situacao === "doente" && (
                 <div className={style.fieldNarrow}>
                   <select
-                    className={`${style.select} ${!doenca ? style.placeholder : ""}`}
+                    className={`${style.select} ${
+                      !doenca ? style.placeholder : ""
+                    }`}
                     value={doenca}
                     onChange={(e) => setDoenca(e.target.value)}
                   >
-                    <option value="" disabled>Selecione</option>
+                    <option value="" disabled>
+                      Selecione
+                    </option>
                     <option value="Vassoura de Bruxa">Vassoura de Bruxa</option>
                     <option value="Podridão Parda">Podridão Parda</option>
                     <option value="Monilíase">Monilíase</option>
@@ -97,13 +101,21 @@ export default function CadastroPlanta3() {
               {situacao === "em_tratamento" && (
                 <div className={style.fieldNarrow}>
                   <select
-                    className={`${style.select} ${!tratamento ? style.placeholder : ""}`}
+                    className={`${style.select} ${
+                      !tratamento ? style.placeholder : ""
+                    }`}
                     value={tratamento}
                     onChange={(e) => setTratamento(e.target.value)}
                   >
-                    <option value="" disabled>Selecione</option>
-                    <option value="Fungicida químico Ceplac">Fungicida químico Ceplac</option>
-                    <option value="Controle biológico">Controle biológico</option>
+                    <option value="" disabled>
+                      Selecione
+                    </option>
+                    <option value="Fungicida químico Ceplac">
+                      Fungicida químico Ceplac
+                    </option>
+                    <option value="Controle biológico">
+                      Controle biológico
+                    </option>
                     <option value="Poda sanitária">Poda sanitária</option>
                   </select>
                   {tratamento && <div className={style.foot}>{tratamento}</div>}
@@ -116,11 +128,15 @@ export default function CadastroPlanta3() {
               <div className={style.legend}>Adubo</div>
               <div className={style.fieldNarrow}>
                 <select
-                  className={`${style.select} ${!adubo ? style.placeholder : ""}`}
+                  className={`${style.select} ${
+                    !adubo ? style.placeholder : ""
+                  }`}
                   value={adubo}
                   onChange={(e) => setAdubo(e.target.value)}
                 >
-                  <option value="" disabled>Selecione</option>
+                  <option value="" disabled>
+                    Selecione
+                  </option>
                   <option value="Forth frutas">Forth frutas</option>
                   <option value="NPK 10-10-10">NPK 10-10-10</option>
                   <option value="Composto orgânico">Composto orgânico</option>
@@ -146,8 +162,8 @@ export default function CadastroPlanta3() {
                       type="checkbox"
                       checked={naoAdubado}
                       onChange={(e) => {
-                        setNaoAdubado(e.target.checked)
-                        if (e.target.checked) setDataAdubacao("")
+                        setNaoAdubado(e.target.checked);
+                        if (e.target.checked) setDataAdubacao("");
                       }}
                     />
                     Não foi adubado
@@ -179,11 +195,24 @@ export default function CadastroPlanta3() {
             </section>
 
             <div className={style.actions}>
-              <button onClick={() => navigate('/cadastro/planta/4')} type="button" className={style.primaryBtn}>Avançar</button>
+              <button
+                onClick={() => navigate("/cadastro/planta/2")}
+                type="button"
+                className={style.primaryBtn}
+              >
+                Voltar
+              </button>
+              <button
+                onClick={() => navigate("/cadastro/planta/4")}
+                type="button"
+                className={style.primaryBtn}
+              >
+                Avançar
+              </button>
             </div>
           </div>
         </div>
       </Body>
     </>
-  )
+  );
 }

@@ -1,17 +1,21 @@
 /* Card branco à direita com leve degradê no rodapé */
-.card{
+.card {
   width: 100%;
   max-width: 980px;
   margin-left: auto;
   padding: 24px 30px 34px;
   background: #fff;
   border-radius: 26px;
-  box-shadow: 0 12px 28px rgba(0,0,0,.14);
-  background-image: linear-gradient(to bottom, #ffffff 75%, rgba(224,141,72,.18));
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff 75%,
+    rgba(224, 141, 72, 0.18)
+  );
 }
 
 /* Título */
-.title{
+.title {
   text-align: center;
   font-size: 38px;
   font-weight: 900;
@@ -19,9 +23,11 @@
   color: #1e1e1e;
 }
 
-.block{ margin: 12px 0; }
+.block {
+  margin: 12px 0;
+}
 
-.label{
+.label {
   display: block;
   font-size: 13px;
   color: #222;
@@ -29,33 +35,37 @@
 }
 
 /* Upload bar */
-.uploadBar{
+.uploadBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   padding: 10px 12px;
-  background: #e3a16f;        /* laranja suave */
+  background: #e3a16f; /* laranja suave */
   color: #1b1b1b;
   border-radius: 16px;
   width: 420px;
-  margin: 0 auto;              /* centraliza */
+  margin: 0 auto; /* centraliza */
 }
-.helper{ opacity:.8; font-weight: 500; }
+.helper {
+  opacity: 0.8;
+  font-weight: 500;
+}
 
-.iconBtn{
+.iconBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px; height: 30px;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background: rgba(0,0,0,.15);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 /* “Pill” verde com nome do arquivo */
-.filePill{
+.filePill {
   margin: 8px auto 0;
   width: 420px;
   background: #4f6b4f;
@@ -66,11 +76,11 @@
 }
 
 /* Inputs “pill” */
-.input{
+.input {
   display: block;
   width: 420px;
   height: 44px;
-  margin: 0 auto;              /* centraliza */
+  margin: 0 auto; /* centraliza */
   border-radius: 22px;
   border: 1px solid transparent;
   background: #e3a16f;
@@ -78,32 +88,42 @@
   font-size: 15px;
   outline: none;
 }
-.input::placeholder{ color: rgba(0,0,0,.65); }
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.65);
+}
 
 /* Botão centralizado */
-.actions{
+.actions {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 6px;
 }
 
-.primaryBtn{
+.primaryBtn {
   height: 48px;
   padding: 0 26px;
   border: none;
   border-radius: 24px;
-  background: #E18024;
+  background: #e18024;
   color: #fff;
   font-weight: 800;
   font-size: 18px;
-  box-shadow: 0 8px 18px rgba(225,128,36,.35);
+  box-shadow: 0 8px 18px rgba(225, 128, 36, 0.35);
   cursor: pointer;
-  transition: transform .06s ease, filter .15s ease;
+  transition: transform 0.06s ease, filter 0.15s ease;
 }
-.primaryBtn:hover{ filter: brightness(1.05); }
-.primaryBtn:active{ transform: translateY(1px); }
+.primaryBtn:hover {
+  filter: brightness(1.05);
+}
+.primaryBtn:active {
+  transform: translateY(1px);
+}
 
 /* Responsivo */
-@media (max-width: 860px){
-  .uploadBar,.filePill,.input{ width: 100%; }
+@media (max-width: 860px) {
+  .uploadBar,
+  .filePill,
+  .input {
+    width: 100%;
+  }
 }
