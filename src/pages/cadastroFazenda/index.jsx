@@ -4,6 +4,7 @@ import cacau from "../../public/cacau.png"
 import Header from "../../components/Header"
 import Body from "../../components/Body"
 import style from "./style.module.css"
+import { useNavigate } from "react-router-dom"
 
 const WelcomeLeft = () => {
   return (
@@ -17,6 +18,7 @@ const WelcomeLeft = () => {
 }
 
 export default function CadastroFazenda() {
+  const navigate = useNavigate()
   return (
     <>
       <Header />
@@ -128,7 +130,14 @@ export default function CadastroFazenda() {
 
           <div className={style.actions}>
             <button type="button" className={style.primaryBtn}>
-              Avançar
+              Cadastrar
+            </button>
+
+            <button 
+            onClick={() => navigate("/")}
+            type="button" 
+            className={style.primaryBtn}>
+              Voltar
             </button>
           </div>
         </div>

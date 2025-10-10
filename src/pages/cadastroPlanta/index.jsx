@@ -112,6 +112,10 @@ export default function CadastroPlanta() {
             <button onClick={() => navigate("/cadastro/planta/2")} type="button" className={style.primaryBtn}>
               Avançar
             </button>
+
+            <button onClick={() => navigate("/")} type="button" className={style.primaryBtn}>
+              Voltar
+            </button>
           </div>
         </div>
       </Body>
