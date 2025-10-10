@@ -9,6 +9,8 @@ import CadastroPlanta from "./pages/cadastroPlanta/index.jsx"
 import CadastroPlanta2 from "./pages/cadastroPlanta2/index.jsx"
 import CadastroPlanta3 from "./pages/cadastroPlanta3/index.jsx"
 import CadastroPlanta4 from "./pages/cadastroPlanta4/index.jsx"
+import Login from "./pages/login/index.jsx"
+import NotFound from "./pages/notFound/index.jsx"
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
       <Route path="/cadastro/planta/2" element={<CadastroPlanta2/>}/>
       <Route path="/cadastro/planta/3" element={<CadastroPlanta3/>}/>
       <Route path="/cadastro/planta/4" element={<CadastroPlanta4/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="*" element={<NotFound/>}/>
     </Routes>
     </>
   )
