@@ -1,9 +1,10 @@
-import React from "react"
-import Logo from "../../assets/Logo.png"
-import cacau from "../../public/cacau.png"
-import Header from "../../components/Header"
-import Body from "../../components/Body"
-import style from "./style.module.css"
+import React from "react";
+import Logo from "../../assets/Logo.png";
+import cacau from "../../public/cacau.png";
+import Header from "../../components/Header";
+import Body from "../../components/Body";
+import style from "./style.module.css";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeLeft = () => {
   return (
@@ -11,13 +12,17 @@ const WelcomeLeft = () => {
       <img src={Logo} alt="Logo" />
       <div>
         <h2 style={{ lineHeight: 1.1 }}>Bem-vindo</h2>
-        <p style={{ opacity: 0.8 }}>Faça seu cadastro de forma fácil e rápida</p>
+        <p style={{ opacity: 0.8 }}>
+          Faça seu cadastro de forma fácil e rápida
+        </p>
       </div>
     </>
-  )
-}
+  );
+};
 
 const CadastroCliente2 = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Header />
@@ -81,6 +86,13 @@ const CadastroCliente2 = () => {
 
           {/* Botão */}
           <div className={style.actions}>
+            <button
+              onClick={() => navigate("/cadastro/cliente")}
+              className={style.primaryBtn}
+              type="button"
+            >
+              Voltar
+            </button>
             <button className={style.primaryBtn} type="button">
               Cadastrar
             </button>
@@ -88,7 +100,7 @@ const CadastroCliente2 = () => {
         </div>
       </Body>
     </div>
-  )
-}
+  );
+};
 
-export default CadastroCliente2
+export default CadastroCliente2;

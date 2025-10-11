@@ -85,7 +85,8 @@
 /* Barra de ações (botão à direita) */
 .actions{
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   margin-top: 10px;
 }
 

@@ -81,6 +81,14 @@ export default function CadastroCliente() {
             >
               Proximo
             </button>
+
+            <button
+              onClick={() => navigate("/")}
+              className={style.buttonNext}
+              type="button"
+            >
+              Voltar
+            </button>
           </div>
         </div>
       </Body>

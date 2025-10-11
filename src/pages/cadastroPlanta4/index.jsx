@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react"
-import Header from "../../components/Header"
-import Body from "../../components/Body"
-import Logo from "../../assets/Logo.png"
-import cacau from "../../public/cacau.png"
-import { Upload } from "lucide-react"
-import style from "./style.module.css"
+import React, { useRef, useState } from "react";
+import Header from "../../components/Header";
+import Body from "../../components/Body";
+import Logo from "../../assets/Logo.png";
+import cacau from "../../public/cacau.png";
+import { Upload } from "lucide-react";
+import style from "./style.module.css";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeLeft = () => (
   <>
@@ -13,23 +14,25 @@ const WelcomeLeft = () => (
       <h2 style={{ lineHeight: 1.1 }}>Cadastro da Planta</h2>
     </div>
   </>
-)
+);
 
 export default function CadastroPlanta4() {
-  const inputRef = useRef(null)
-  const [file, setFile] = useState(null)
-  const [qtdColheita, setQtdColheita] = useState("")
-  const [dtColheita, setDtColheita] = useState("")
+  const inputRef = useRef(null);
+  const [file, setFile] = useState(null);
+  const [qtdColheita, setQtdColheita] = useState("");
+  const [dtColheita, setDtColheita] = useState("");
 
   function onPick() {
-    inputRef.current?.click()
+    inputRef.current?.click();
   }
 
   function onChange(e) {
-    const f = e.target.files?.[0]
-    if (!f) return
-    setFile(f) // máx. 1
+    const f = e.target.files?.[0];
+    if (!f) return;
+    setFile(f); // máx. 1
   }
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -46,7 +49,12 @@ export default function CadastroPlanta4() {
                 <small className={style.helper}>Limite máx. de 1 imagem</small>
               </span>
 
-              <button type="button" className={style.iconBtn} onClick={onPick} aria-label="Enviar">
+              <button
+                type="button"
+                className={style.iconBtn}
+                onClick={onPick}
+                aria-label="Enviar"
+              >
                 <Upload size={18} />
               </button>
 
@@ -59,16 +67,14 @@ export default function CadastroPlanta4() {
               />
             </div>
 
-            {file && (
-              <div className={style.filePill}>
-                Imagem: {file.name}
-              </div>
-            )}
+            {file && <div className={style.filePill}>Imagem: {file.name}</div>}
           </section>
 
           {/* Última colheita (quantidade) */}
           <section className={style.block}>
-            <label className={style.label} htmlFor="qtd">Última colheita</label>
+            <label className={style.label} htmlFor="qtd">
+              Última colheita
+            </label>
             <input
               id="qtd"
               className={style.input}
@@ -80,7 +86,9 @@ export default function CadastroPlanta4() {
 
           {/* Data da última colheita */}
           <section className={style.block}>
-            <label className={style.label} htmlFor="data">Última colheita</label>
+            <label className={style.label} htmlFor="data">
+              Última colheita
+            </label>
             <input
               id="data"
               className={style.input}
@@ -92,10 +100,19 @@ export default function CadastroPlanta4() {
 
           {/* Botão */}
           <div className={style.actions}>
-            <button type="button" className={style.primaryBtn}>Concluir</button>
+            <button
+              onClick={() => navigate("/cadastro/planta/3")}
+              type="button"
+              className={style.primaryBtn}
+            >
+              Voltar
+            </button>
+            <button type="button" className={style.primaryBtn}>
+              Concluir
+            </button>
           </div>
         </div>
       </Body>
     </>
-  )
+  );
 }
