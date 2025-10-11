@@ -1,0 +1,172 @@
+html, body {
+  height: 100%;
+  overflow: hidden; /* remove o scroll vertical */
+}
+
+:global(#root) {
+  height: 100%;
+  overflow: hidden;
+}
+
+.pageBg,
+.card,
+.cardInner,
+.imagem {
+  height: 100vh; /* garante que tudo ocupe exatamente a altura da tela */
+}
+
+
+/* fundo da página */
+.pageBg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, #DE9654, #643719);
+  z-index: -1;
+}
+
+/* imagem do lado esquerdo */
+.imagem{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+/* card branco do lado direito */
+.card{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.cardInner{
+  /* mesmo visual da imagem do mock */
+  background: #fff;
+  width: min(640px, 100%);
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.12);
+  position: relative;
+}
+
+/* degrade sutil na base do card (como no mock) */
+.cardInner::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(222,150,84,0.25) 100%);
+  border-bottom-right-radius: 16px;
+  pointer-events: none;
+}
+
+/* formulário */
+.form{
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputLabel{
+  font-family: var(--body-font, system-ui, sans-serif);
+  font-size: 18px;
+  color: var(--color-dark);
+  margin-top: 6px;
+}
+
+/* grupo do input com ícone à esquerda */
+.inputGroup{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon{
+  position: absolute;
+  left: 14px;
+  opacity: .9;
+}
+
+.input{
+  width: 100%;
+  height: 44px;
+  padding: 0 14px 0 40px; /* espaço pro ícone */
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: #E6A770; /* cor “caramelo” do mock */
+  color: #2b1c12;
+  font-size: 15px;
+}
+
+.input::placeholder{
+  color: rgba(43,28,18,.55);
+}
+
+/* botão de login laranja arredondado */
+.loginBtn{
+  margin-top: 10px;
+  height: 48px;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  padding: 0 36px;
+  background: var(--color-button); /* laranja */
+  color: var(--color-white);
+  font-weight: 800;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(215,110,31,.35);
+  
+}
+
+.loginBtn:active{
+  transform: translateY(1px);
+}
+
+/* rodapé (“Primeira vez?” + botão pequeno) */
+.footerNote{
+  margin-top: 8px;
+  font-size: 16px;
+  color: var(--color-dark);
+}
+
+.signupBtn{
+  border: none;
+  background: var(--color-orange);
+  color: var(--color-white);
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  width: max-content;
+  cursor: pointer;
+}
+
+.footerCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+/* responsivo: quando empilhar, manter cantos arredondados */
+@media (max-width: 900px){
+  .imagem{
+    border-radius: 16px 16px 0 0 !important;
+    height: 260px;
+  }
+  .cardInner{
+    border-radius: 0 0 16px 16px;
+  }
+}

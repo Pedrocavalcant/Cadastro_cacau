@@ -10,6 +10,9 @@ import CadastroPlanta2 from "./pages/cadastroPlanta2/index.jsx"
 import CadastroPlanta3 from "./pages/cadastroPlanta3/index.jsx"
 import CadastroPlanta4 from "./pages/cadastroPlanta4/index.jsx"
 
+import HeaderLogin from "./components/headerLogin/index.jsx"
+import Login from "./pages/login/index.jsx"
+
 
 function App() {
 
@@ -17,6 +20,7 @@ function App() {
     <>    
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/headerLogin" element={<HeaderLogin/>}/>
       <Route path="/cadastro/cliente" element={<CadastroCliente/>}/>
       <Route path="/cadastro/cliente/2" element={<CadastroCliente2/>}/>
       <Route path="/cadastro/fazenda" element={<CadastroFazenda/>}/>
@@ -24,6 +28,7 @@ function App() {
       <Route path="/cadastro/planta/2" element={<CadastroPlanta2/>}/>
       <Route path="/cadastro/planta/3" element={<CadastroPlanta3/>}/>
       <Route path="/cadastro/planta/4" element={<CadastroPlanta4/>}/>
+      <Route path="/login" element={<Login/>}/>
     </Routes>
     </>
   )
