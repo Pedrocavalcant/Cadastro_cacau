@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {  Lock, User } from 'lucide-react'
 import HeaderLogin from '../../components/headerLogin'
 import BodyLogin from '../../components/BodyLogin'
@@ -12,6 +12,12 @@ const WelcomeLeft = () => (
 
 export default function Login () {
   const navigate = useNavigate()
+  const [usuario, setUsuario] = useState('')
+  const [senha,setSenha] = useState('')
+
+  const isUsuario = usuario.trim().length > 0
+  const isSenha = senha.trim().length > 0
+  const isFormValid = isUsuario && isSenha
   return (
     <>
       <HeaderLogin />
@@ -42,11 +48,18 @@ export default function Login () {
               </div>
 
               <div className={style.footerCard}>
-                <button onClick={() => navigate('/')} className={style.loginBtn} type="submit">Log in</button>
+                <button 
+                onClick={() => navigate('/')} 
+                className={style.loginBtn} 
+                type="button"
+                disabled={!isFormValid}
+                >Log in</button>
 
                 <span className={style.footerNote}>Primeira vez?</span>
 
-                <button type="button" className={style.signupBtn}>
+                <button 
+                type="button" 
+                className={style.signupBtn}>
                   Cadastre-se
                 </button>
               </div>
