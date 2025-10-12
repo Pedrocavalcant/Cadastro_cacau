@@ -4,12 +4,14 @@ import HeaderLogin from '../../components/headerLogin'
 import BodyLogin from '../../components/BodyLogin'
 import cacau from '../../public/cacau.png'
 import style from './style.module.css'
+import { useNavigate } from 'react-router-dom'
 
 const WelcomeLeft = () => (
   <img src={cacau} alt="cacau" className={style.imagem}/>
 )
 
 export default function Login () {
+  const navigate = useNavigate()
   return (
     <>
       <HeaderLogin />
@@ -40,7 +42,7 @@ export default function Login () {
               </div>
 
               <div className={style.footerCard}>
-                <button className={style.loginBtn} type="submit">Log in</button>
+                <button onClick={() => navigate('/')} className={style.loginBtn} type="submit">Log in</button>
 
                 <span className={style.footerNote}>Primeira vez?</span>
 
