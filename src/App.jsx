@@ -1,5 +1,5 @@
 
-import { Link, Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import CadastroCliente from "./pages/cadastroUser1/index.jsx"
 import style from "./style.module.css"
 import Home from "./pages/home/index.jsx"
@@ -12,8 +12,7 @@ import CadastroPlanta4 from "./pages/cadastroPlanta4/index.jsx"
 import Login from "./pages/login/index.jsx"
 import NotFound from "./pages/notFound/index.jsx"
 
-import HeaderLogin from "./components/headerLogin/index.jsx"
-import Login from "./pages/login/index.jsx"
+// imports kept minimal; HeaderLogin isn't used here
 
 
 function App() {
@@ -30,7 +29,7 @@ function App() {
       <Route path="/cadastro/planta/3" element={<CadastroPlanta3/>}/>
       <Route path="/cadastro/planta/4" element={<CadastroPlanta4/>}/>
       <Route path="/login" element={<Login/>}/>
-      <Route path="*" element={<NotFound/>}/>
+      <Route path="*" element={<NotFound/>}/> 
     </Routes>
     </>
   )

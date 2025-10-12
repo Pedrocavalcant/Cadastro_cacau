@@ -1,5 +1,5 @@
 import React from 'react'
-import { Mail, Lock, User } from 'lucide-react'
+import {  Lock, User } from 'lucide-react'
 import HeaderLogin from '../../components/headerLogin'
 import BodyLogin from '../../components/BodyLogin'
 import cacau from '../../public/cacau.png'
