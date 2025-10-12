@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react"
-import Logo from "../../assets/Logo.png"
-import cacau from "../../public/cacau.png"
-import Header from "../../components/Header"
-import Body from "../../components/Body"
-import { Upload, QrCode } from "lucide-react"
-import style from "./style.module.css"
-import { useNavigate } from "react-router-dom"
+import React, { useRef, useState } from "react";
+import Logo from "../../assets/Logo.png";
+import cacau from "../../public/cacau.png";
+import Header from "../../components/Header";
+import Body from "../../components/Body";
+import Footer from "../../components/Footer";
+import { Upload, QrCode } from "lucide-react";
+import style from "./style.module.css";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeLeft = () => {
   return (
@@ -15,24 +16,24 @@ const WelcomeLeft = () => {
         <h2 style={{ lineHeight: 1.1 }}>Cadastro da Planta</h2>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default function CadastroPlanta() {
-  const inputRef = useRef(null)
-  const [files, setFiles] = useState([])
-  const [especie, setEspecie] = useState("") // controla o select
+  const inputRef = useRef(null);
+  const [files, setFiles] = useState([]);
+  const [especie, setEspecie] = useState(""); // controla o select
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function onPick() {
-    inputRef.current?.click()
+    inputRef.current?.click();
   }
 
   function onChange(e) {
-    const arr = Array.from(e.target.files || [])
-    const next = [...files, ...arr].slice(0, 3) // máximo de 3 imagens
-    setFiles(next)
+    const arr = Array.from(e.target.files || []);
+    const next = [...files, ...arr].slice(0, 3); // máximo de 3 imagens
+    setFiles(next);
   }
 
   return (
@@ -91,7 +92,9 @@ export default function CadastroPlanta() {
             <div className={style.selectWrap}>
               <select
                 id="especie"
-                className={`${style.select} ${!especie ? style.isPlaceholder : ""}`}
+                className={`${style.select} ${
+                  !especie ? style.isPlaceholder : ""
+                }`}
                 value={especie}
                 onChange={(e) => setEspecie(e.target.value)}
               >
@@ -109,16 +112,25 @@ export default function CadastroPlanta() {
 
           {/* Botão */}
           <div className={style.actions}>
-            <button onClick={() => navigate("/cadastro/planta/2")} type="button" className={style.primaryBtn}>
+            <button
+              onClick={() => navigate("/cadastro/planta/2")}
+              type="button"
+              className={style.primaryBtn}
+            >
               Avançar
             </button>
 
-            <button onClick={() => navigate("/")} type="button" className={style.primaryBtn}>
+            <button
+              onClick={() => navigate("/")}
+              type="button"
+              className={style.primaryBtn}
+            >
               Voltar
             </button>
           </div>
         </div>
       </Body>
+      <Footer />
     </>
-  )
+  );
 }

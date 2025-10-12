@@ -3,6 +3,7 @@ import Logo from "../../assets/Logo.png";
 import cacau from "../../public/cacau.png";
 import Header from "../../components/Header";
 import Body from "../../components/Body";
+import Footer from "../../components/Footer";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -99,6 +100,7 @@ const CadastroCliente2 = () => {
           </div>
         </div>
       </Body>
+      <Footer />
     </div>
   );
 };

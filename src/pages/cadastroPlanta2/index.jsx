@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
 import Body from "../../components/Body";
+import Footer from "../../components/Footer";
 import Logo from "../../assets/Logo.png";
 import cacau from "../../public/cacau.png";
 import style from "./style.module.css";
@@ -180,6 +181,7 @@ export default function CadastroPlanta2() {
           </div>
         </div>
       </Body>
+      <Footer />
     </>
   );
 }
