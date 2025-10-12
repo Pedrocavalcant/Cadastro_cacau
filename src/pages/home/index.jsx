@@ -1,22 +1,54 @@
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import style from "./style.module.css";
+import HeaderLogin from "../../components/headerLogin";
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Home</h1>
-      <button onClick={() => navigate("/cadastro/cliente")}>
-        Cadastro Cliente
-      </button>
-      <button onClick={() => navigate("/cadastro/fazenda")}>
-        Cadastro Fazenda
-      </button>
-      <button onClick={() => navigate("/cadastro/planta")}>
-        Cadastro Planta
-      </button>
+    <div className={style.homeContainer}>
+      <HeaderLogin />
+      <div>
+        <p>
+          <span className={style.spanStrong}>Do solo fértil ao fruto perfeito:</span> <br />
+          acompanhe cada etapa da sua plantação.
+        </p>
+      </div>
+      <body className={style.containerBody}>
+        <h2>Gerencie seu negócio</h2>
+        <section className={style.containerButton}>
+          <div className={style.buttonPage}>
+            <button className={style.buttonImage} type="button" onClick={() => navigate("/cadastro/cliente")}>
+              Cadastro Cliente
+            </button>
+            <span className={style.spanStrong}>Cadastro e atualização de planta</span>
+          </div>
+
+          <div className={style.buttonPage}>
+            <button className={style.buttonImage} type="button" onClick={() => navigate("/cadastro/fazenda")}>
+              Cadastro Fazenda
+            </button>
+            <span className={style.spanStrong}>Cadastro e atualização de fazenda</span>
+          </div>
+
+          <div className={style.buttonPage}>
+            <button className={style.buttonImage} type="button" onClick={() => navigate("/cadastro/planta")}>
+              Cadastro Planta
+            </button>
+            <span className={style.spanStrong}>Cadastro e atualização de clientes</span>
+          </div>
+
+        </section>  
+      </body> 
+
+      <div>
+        <h2>Relatórios</h2>
+        <div>
+          <p><span className={style.spanStrong}>Do campo para a tela:</span> veja o que sua plantação tem a dizer</p>
+          <button type="button"></button>
+        </div>
+      </div>
     </div>
   );
 };

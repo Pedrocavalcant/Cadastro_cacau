@@ -1,0 +1,26 @@
+.homeContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.spanStrong{
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+.containerBody{
+    display: flex;
+    flex-direction: column;
+}
+
+.containerButton{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.buttonPage{
+    display: flex;
+    flex-direction: column;
+
+}
