@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../../components/Header";
 import Body from "../../components/Body";
 import Logo from "../../assets/Logo.png";
+import Footer from "../../components/Footer";
 import cacau from "../../public/cacau.png";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
@@ -213,6 +214,7 @@ export default function CadastroPlanta3() {
           </div>
         </div>
       </Body>
+      <Footer />
     </>
   );
 }

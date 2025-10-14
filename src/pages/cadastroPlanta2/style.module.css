@@ -7,11 +7,6 @@
   background: #fff;
   border-radius: 26px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
-  background-image: linear-gradient(
-    to bottom,
-    #ffffff 75%,
-    rgba(224, 141, 72, 0.18)
-  );
 }
 
 /* Título */
@@ -105,9 +100,9 @@
   border-radius: 24px;
   background: #e18024;
   color: #fff;
-  font-weight: 800;
+  font-weight: 300;
   font-size: 18px;
-  box-shadow: 0 8px 18px rgba(225, 128, 36, 0.35);
+  /* box-shadow: 0 8px 18px rgba(225, 128, 36, 0.35); */
   cursor: pointer;
   transition: transform 0.06s ease, filter 0.15s ease;
 }

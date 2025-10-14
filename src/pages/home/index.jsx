@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import HeaderLogin from "../../components/headerLogin";
+import Footer from "../../components/Footer";
 
 
 
@@ -21,24 +22,42 @@ const Home = () => {
         <h2>Gerencie seu negócio</h2>
         <section className={style.containerButton}>
           <div className={style.buttonPage}>
-            <button className={style.buttonImage} type="button" onClick={() => navigate("/cadastro/cliente")}>
+            <button
+              className={style.buttonImage}
+              type="button"
+              onClick={() => navigate("/cadastro/cliente")}
+            >
               Cadastro Cliente
             </button>
-            <span className={style.spanStrong}>Cadastro e atualização de planta</span>
+            <span className={style.spanStrong}>
+              Cadastro e atualização de planta
+            </span>
           </div>
 
           <div className={style.buttonPage}>
-            <button className={style.buttonImage} type="button" onClick={() => navigate("/cadastro/fazenda")}>
+            <button
+              className={style.buttonImage}
+              type="button"
+              onClick={() => navigate("/cadastro/fazenda")}
+            >
               Cadastro Fazenda
             </button>
-            <span className={style.spanStrong}>Cadastro e atualização de fazenda</span>
+            <span className={style.spanStrong}>
+              Cadastro e atualização de fazenda
+            </span>
           </div>
 
           <div className={style.buttonPage}>
-            <button className={style.buttonImage} type="button" onClick={() => navigate("/cadastro/planta")}>
+            <button
+              className={style.buttonImage}
+              type="button"
+              onClick={() => navigate("/cadastro/planta")}
+            >
               Cadastro Planta
             </button>
-            <span className={style.spanStrong}>Cadastro e atualização de clientes</span>
+            <span className={style.spanStrong}>
+              Cadastro e atualização de clientes
+            </span>
           </div>
 
         </section>  
@@ -51,6 +70,7 @@ const Home = () => {
           <button type="button">teste</button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
