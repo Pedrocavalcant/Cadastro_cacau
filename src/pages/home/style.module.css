@@ -3,9 +3,45 @@
     flex-direction: column;
 }
 
+.imagemHeader{
+    background-image: url("../../assets/Header.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 50px;
+    overflow: hidden;
+}
+
+.imagemHeader::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to left, #ffffff, transparent);
+    z-index: 1;
+    height: 340px;
+}
+
+.textHeader{
+    font-size: 1.9rem;
+    z-index: 2;
+    border: 5px solid var(--color-icon);
+    padding: 20px;
+    border-radius: 15px;
+    color: var(--color-icon);
+    font-family: var(--title-font);
+    line-height: 1.5;
+    max-width: 500px;
+    text-align: center;
+}
+
 .spanStrong{
     color: var(--color-dark);
-    font-weight: 800;
+    font-family: var(--title-font);
 }
 
 .containerBody{
@@ -22,5 +58,4 @@
 .buttonPage{
     display: flex;
     flex-direction: column;
-
 }

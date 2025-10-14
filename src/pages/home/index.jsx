@@ -3,19 +3,21 @@ import { Navigate, useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import HeaderLogin from "../../components/headerLogin";
 
+
+
 const Home = () => {
   const navigate = useNavigate();
 
   return (
     <div className={style.homeContainer}>
       <HeaderLogin />
-      <div>
-        <p>
+      <div className={style.imagemHeader}>
+        <p className={style.textHeader}>
           <span className={style.spanStrong}>Do solo fértil ao fruto perfeito:</span> <br />
           acompanhe cada etapa da sua plantação.
         </p>
       </div>
-      <body className={style.containerBody}>
+      <div className={style.containerdiv}>
         <h2>Gerencie seu negócio</h2>
         <section className={style.containerButton}>
           <div className={style.buttonPage}>
@@ -40,13 +42,13 @@ const Home = () => {
           </div>
 
         </section>  
-      </body> 
+      </div> 
 
       <div>
         <h2>Relatórios</h2>
         <div>
           <p><span className={style.spanStrong}>Do campo para a tela:</span> veja o que sua plantação tem a dizer</p>
-          <button type="button"></button>
+          <button type="button">teste</button>
         </div>
       </div>
     </div>
