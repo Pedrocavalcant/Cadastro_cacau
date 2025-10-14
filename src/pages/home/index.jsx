@@ -18,16 +18,15 @@ const Home = () => {
           acompanhe cada etapa da sua plantação.
         </p>
       </div>
-      <div className={style.containerdiv}>
-        <h2>Gerencie seu negócio</h2>
+      <div className={style.containerBody}>
+        <h2 className={style.titleBody}>Gerencie seu negócio</h2>
         <section className={style.containerButton}>
           <div className={style.buttonPage}>
             <button
-              className={style.buttonImage}
+              className={style.buttonImage1}
               type="button"
               onClick={() => navigate("/cadastro/cliente")}
             >
-              Cadastro Cliente
             </button>
             <span className={style.spanStrong}>
               Cadastro e atualização de planta
@@ -36,11 +35,10 @@ const Home = () => {
 
           <div className={style.buttonPage}>
             <button
-              className={style.buttonImage}
+              className={style.buttonImage2}
               type="button"
               onClick={() => navigate("/cadastro/fazenda")}
             >
-              Cadastro Fazenda
             </button>
             <span className={style.spanStrong}>
               Cadastro e atualização de fazenda
@@ -49,11 +47,10 @@ const Home = () => {
 
           <div className={style.buttonPage}>
             <button
-              className={style.buttonImage}
+              className={style.buttonImage3}
               type="button"
               onClick={() => navigate("/cadastro/planta")}
             >
-              Cadastro Planta
             </button>
             <span className={style.spanStrong}>
               Cadastro e atualização de clientes
@@ -63,14 +60,14 @@ const Home = () => {
         </section>  
       </div> 
 
-      <div>
-        <h2>Relatórios</h2>
-        <div>
-          <p><span className={style.spanStrong}>Do campo para a tela:</span> veja o que sua plantação tem a dizer</p>
-          <button type="button">teste</button>
+      <div className={style.containerFooter}>
+        <h2 className={style.titleFooter}>Relatórios</h2>
+        <div className={style.imagemFooter}>
+          <p className={style.textFooter}><span className={style.spanStrong}>Do campo para a tela:</span> veja o que sua plantação tem a dizer</p>
+          {/* <button className={style.footerBotton} type="button"></button> */}
         </div>
       </div>
-      <Footer />
+
     </div>
   );
 };

@@ -9,7 +9,7 @@
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 250px;
+    height: 150px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -23,14 +23,14 @@
     inset: 0;
     background-image: linear-gradient(to left, #ffffff, transparent);
     z-index: 1;
-    height: 340px;
+    height: 240px;
 }
 
 .textHeader{
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     z-index: 2;
     border: 5px solid var(--color-icon);
-    padding: 20px;
+    padding: 10px;
     border-radius: 15px;
     color: var(--color-icon);
     font-family: var(--title-font);
@@ -47,15 +47,100 @@
 .containerBody{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
-.containerButton{
-    display: flex;
-    gap: 40px;
-    justify-content: center;
+.titleBody{
+    margin-top: 15px;
+    padding: 10px 110px;
+    border: 5px solid var(--color-icon);
+    border-radius: 35px;
+    font-family: var(--title-font);
+    font-size: 1.6rem;
 }
 
 .buttonPage{
     display: flex;
     flex-direction: column;
 }
+
+.containerButton{
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+}
+
+.buttonImage1{
+    background-image: url("../../assets/CadastroPlanta.png");
+}
+
+
+.buttonImage2{
+    background-image: url("../../assets/CadastroFazenda.png");
+}
+
+.buttonImage3{
+    background-image: url("../../assets/CadastroFuncionario.png");
+}
+
+.buttonImage1:hover, .buttonImage2:hover, .buttonImage3:hover{
+    cursor: pointer;
+}
+
+.buttonImage1, .buttonImage2, .buttonImage3{
+    background-size: cover;
+    background-position: center;
+    padding: 28px 35px;
+    border: none;
+    border-radius: 15px;
+    z-index: 3;
+}
+
+.containerFooter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.titleFooter{
+    font-family: var(--title-font);
+    padding: 10px 110px;
+    border: 5px solid var(--color-icon);
+    border-radius: 15px;
+}
+
+.imagemFooter{
+    background-image: url("../../assets/Relatorios.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.imagemFooter::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to top, #ffffff 5%, transparent 15% );
+    z-index: 1;   
+}
+
+.textFooter{
+    color: var(--color-icon);
+    font-family: var(--title-font);
+    z-index: 2;
+    width: 400px;
+    text-align: center;
+}
+
+
