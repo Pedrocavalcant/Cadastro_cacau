@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../assets/Logo.png";
 import cacau from "../../public/cacau.png";
 import Header from "../../components/Header";
@@ -22,7 +22,21 @@ const WelcomeLeft = () => {
   );
 };
 
-export default function CadastroCliente() {
+export default function CadastroFuncionario() {
+  const [nome, setNome] = useState("")
+  const [usuario, setUsuario] = useState("")
+  const [email, setEmail] = useState("")
+  const [senha, setSenha] = useState("")
+  const [confirmarSenha, setConfirmarSenha] = useState("")
+
+  const isNome = nome.trim().length > 0
+  const isUsuario = usuario.trim().length > 0
+  const isEmail = email.trim().length > 0 && email.includes("@")
+  const isSenha = senha.trim().length > 5 
+  const isConfirmarSenha = confirmarSenha.trim().length > 5 && confirmarSenha === senha
+
+  const isFormValid = isNome && isUsuario && isEmail && isSenha && isConfirmarSenha
+
   const navigate = useNavigate();
 
   return (
@@ -37,7 +51,13 @@ export default function CadastroCliente() {
             </label>
             <div className={style.inputWrapper}>
               <PencilLine className={style.icon} size={18} />
-              <input className={style.input} type="text" id="nome" />
+              <input className={style.input} 
+              type="text" 
+              id="nome" 
+              autoComplete="off"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              />
             </div>
           </div>
 
@@ -48,7 +68,13 @@ export default function CadastroCliente() {
             </label>
             <div className={style.inputWrapper}>
               <User className={style.icon} size={18} />
-              <input className={style.input} type="text" id="usuario" />
+              <input className={style.input} 
+              type="text" 
+              id="usuario"
+              autoComplete="off"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)} 
+              />
             </div>
           </div>
 
@@ -59,7 +85,13 @@ export default function CadastroCliente() {
             </label>
             <div className={style.inputWrapper}>
               <Mail className={style.icon} size={18} />
-              <input className={style.input} type="email" id="email" />
+              <input className={style.input} 
+              type="email" 
+              id="email" 
+              autoComplete="off"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
           </div>
 
@@ -70,7 +102,13 @@ export default function CadastroCliente() {
             </label>
             <div className={style.inputWrapper}>
               <LockKeyhole className={style.icon} size={18} />
-              <input className={style.input} type="password" id="senha" />
+              <input className={style.input} 
+              type="password" 
+              id="senha" 
+              autoComplete="off"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              />
             </div>
           </div>
 
@@ -81,16 +119,23 @@ export default function CadastroCliente() {
             </label>
             <div className={style.inputWrapper}>
               <LockKeyhole className={style.icon} size={18} />
-              <input className={style.input} type="password" id="conf_senha" />
+              <input className={style.input} 
+              type="password" 
+              id="conf_senha" 
+              autoComplete="off"
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+              />
             </div>
           </div>
 
           {/* Ações */}
           <div className={style.actions}>
             <button
-              onClick={() => navigate("/cadastro/cliente/2")}
+              onClick={() => navigate("/cadastro/funcionario/2")}
               className={style.buttonNext}
               type="button"
+              disabled={!isFormValid}
             >
               Proximo
             </button>

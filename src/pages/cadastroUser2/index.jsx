@@ -21,7 +21,7 @@ const WelcomeLeft = () => {
   );
 };
 
-const CadastroCliente2 = () => {
+const CadastroFuncionario2 = () => {
   const navigate = useNavigate();
 
   return (
@@ -88,7 +88,7 @@ const CadastroCliente2 = () => {
           {/* Botão */}
           <div className={style.actions}>
             <button
-              onClick={() => navigate("/cadastro/cliente")}
+              onClick={() => navigate("/cadastro/funcionario")}
               className={style.primaryBtn}
               type="button"
             >
@@ -105,4 +105,4 @@ const CadastroCliente2 = () => {
   );
 };
 
-export default CadastroCliente2;
+export default CadastroFuncionario2;
