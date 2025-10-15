@@ -25,7 +25,7 @@ const Home = () => {
             <button
               className={style.buttonImage1}
               type="button"
-              onClick={() => navigate("/cadastro/cliente")}
+              onClick={() => navigate("/cadastro/funcionario")}
             >
             </button>
             <span className={style.spanStrong}>
