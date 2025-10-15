@@ -184,7 +184,7 @@ export default function CadastroPlanta3() {
             </section>
 
             {/* Observações */}
-            <section className={style.block}>
+            <section className={style.block_obs}>
               <label className={style.legend}>Observações</label>
               <textarea
                 className={style.textarea}

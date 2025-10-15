@@ -3,22 +3,24 @@
   height: 100vh;
   background-size: cover;
   background-position: center;
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .cardContainer {
+    margin-top: 100px;
+    margin-bottom: 50px;
     width: 1050px;
-    height: 560px;
+    min-height: 560px;
     background: linear-gradient(to bottom, #ffffff 0%, #cd6003 100%);
     border-radius: 33px;
     display: flex;
     box-shadow: 0 0 12px black;
-    overflow: hidden;
+    position: relative;
 
     .leftPanel {
-      height: 560px;
+      height: 100%;
       width: 500px;
       background-color: var(--color-dark);
       border-radius: 33px;
@@ -40,7 +42,7 @@
 
     &::after {
       content: "";
-      height: 560px;
+      height: 100%;
       width: 520px;
       background-color: var(--color-orange);
       border-radius: 33px;

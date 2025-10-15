@@ -17,15 +17,25 @@
   --botton-font: "Baloo", cursive;
 }
 
+* {
+  font-family: var(--body-font);
+}
+
 h1 {
   font-family: var(--title-font);
   font-style: normal;
 }
 
 button {
+  margin-top: 10px !important;
   font-family: var(--botton-font);
+  font-weight: 100 !important;
+  font-size: 22px !important;
 }
 
-* {
-  font-family: var(--body-font);
+label,
+input,
+select,
+textarea {
+  font-size: 18px !important;
 }

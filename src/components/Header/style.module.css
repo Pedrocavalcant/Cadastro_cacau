@@ -1,23 +1,23 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.headercontainer{
+.headercontainer {
   display: flex;
   width: 100%;
   height: 70px;
   background-color: var(--color-lightdark);
-  border-radius: 0 0 33px 33px;
+  /* border-radius: 0 0 33px 33px; */
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 0; */
+
   z-index: 10;
 
-  img{
+  img {
     max-width: 90px;
     padding: 20px;
   }
