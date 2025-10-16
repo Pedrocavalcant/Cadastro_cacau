@@ -53,7 +53,7 @@ const Home = () => {
             >
             </button>
             <span className={style.spanStrong}>
-              Cadastro e atualização de clientes
+              Cadastro e atualização de funcionarios
             </span>
           </div>
 

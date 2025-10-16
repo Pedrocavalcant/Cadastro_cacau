@@ -19,7 +19,7 @@ const WelcomeLeft = () => (
 export default function CadastroPlanta3() {
   // Situação
   const [situacao, setSituacao] = useState("doente");
-  const [doenca, setDoenca] = useState("Vassoura de Bruxa");
+  const [doenca, setDoenca] = useState("");
   const [tratamento, setTratamento] = useState("");
 
   // Adubação

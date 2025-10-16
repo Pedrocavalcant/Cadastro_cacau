@@ -22,8 +22,11 @@ const WelcomeLeft = () => {
 export default function CadastroPlanta() {
   const inputRef = useRef(null);
   const [files, setFiles] = useState([]);
-  const [especie, setEspecie] = useState(""); // controla o select
+  const [especie, setEspecie] = useState("");
 
+  const isEspecie = especie !== "";
+
+  const isFormValid = isEspecie;
   const navigate = useNavigate();
 
   function onPick() {
@@ -116,6 +119,7 @@ export default function CadastroPlanta() {
               onClick={() => navigate("/cadastro/planta/2")}
               type="button"
               className={style.primaryBtn}
+              disabled={!isFormValid}
             >
               Avançar
             </button>

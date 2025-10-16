@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Logo from "../../assets/Logo.png"
 import cacau from "../../public/cacau.png"
 import Header from "../../components/Header"
@@ -18,6 +18,25 @@ const WelcomeLeft = () => {
 }
 
 export default function CadastroFazenda() {
+  const [nomeFazenda, setNomeFazenda] = useState("")
+  const [cnpj, setCnpj] = useState("")
+  const [proprietario, setProprietario] = useState("")
+  const [areaCultivo, setAreaCultivo] = useState("")
+  const [especiePredominante, setEspeciePredominante] = useState("")
+  const [sistemaProdutivo, setSistemaProdutivo] = useState("")
+  const [divisaoPlantio, setDivisaoPlantio] = useState("")
+
+  const isNomeFazenda = nomeFazenda.trim().length > 0
+  const isCnpj = cnpj.trim().length > 13
+  const isProprietario = proprietario.trim().length > 0
+  const isAreaCultivo = areaCultivo.trim().length > 0
+  const isEspeciePredominante = especiePredominante !== ""
+  const isSistemaProdutivo = sistemaProdutivo !== ""
+  const isDivisaoPlantio = divisaoPlantio !== ""
+
+  const isFormValid = isNomeFazenda && isCnpj && isProprietario && isAreaCultivo && isEspeciePredominante && isSistemaProdutivo && isDivisaoPlantio
+
+
   const navigate = useNavigate()
   return (
     <>
@@ -35,6 +54,8 @@ export default function CadastroFazenda() {
                 className={style.input}
                 type="text"
                 placeholder="Digite aqui..."
+                value={nomeFazenda}
+                onChange={(e) => setNomeFazenda(e.target.value)}
               />
             </div>
 
@@ -42,7 +63,13 @@ export default function CadastroFazenda() {
               <label className={style.labelTitle} htmlFor="espPredominante">
                 Espécie Predominante
               </label>
-              <select id="espPredominante" className={style.select} defaultValue="">
+              <select 
+              id="espPredominante" 
+              className={style.select} 
+              defaultValue=""
+              value={especiePredominante}
+              onChange={(e) => setEspeciePredominante(e.target.value)}
+              >
                 <option value="" disabled>
                   Selecione
                 </option>
@@ -64,6 +91,8 @@ export default function CadastroFazenda() {
                 className={style.input}
                 type="text"
                 placeholder="Digite aqui..."
+                value={cnpj}
+                onChange={(e) => setCnpj(e.target.value)}
               />
             </div>
 
@@ -71,7 +100,13 @@ export default function CadastroFazenda() {
               <label className={style.labelTitle} htmlFor="sisProdutivo">
                 Sistema Produtivo
               </label>
-              <select id="sisProdutivo" className={style.select} defaultValue="">
+              <select 
+              id="sisProdutivo" 
+              className={style.select} 
+              defaultValue=""
+              value={sistemaProdutivo}
+              onChange={(e) => setSistemaProdutivo(e.target.value)}
+              >
                 <option value="" disabled>
                   Selecione
                 </option>
@@ -93,6 +128,8 @@ export default function CadastroFazenda() {
                 className={style.input}
                 type="text"
                 placeholder="Digite aqui..."
+                value={proprietario}
+                onChange={(e) => setProprietario(e.target.value)}
               />
             </div>
 
@@ -100,7 +137,13 @@ export default function CadastroFazenda() {
               <label className={style.labelTitle} htmlFor="divPlantio">
                 Divisão do plantio
               </label>
-              <select id="divPlantio" className={style.select} defaultValue="">
+              <select 
+              id="divPlantio" 
+              className={style.select} 
+              defaultValue=""
+              value={divisaoPlantio}
+              onChange={(e) => setDivisaoPlantio(e.target.value)}
+              >
                 <option value="" disabled>
                   Selecione
                 </option>
@@ -122,6 +165,8 @@ export default function CadastroFazenda() {
                 className={style.input}
                 type="text"
                 placeholder="Digite aqui..."
+                value={areaCultivo}
+                onChange={(e) => setAreaCultivo(e.target.value)}
               />
             </div>
 
@@ -129,12 +174,17 @@ export default function CadastroFazenda() {
           </div>
 
           <div className={style.actions}>
-            <button type="button" className={style.primaryBtn}>
+            <button 
+            type="button" 
+            className={style.primaryBtn}
+            disabled={!isFormValid}
+            >
               Cadastrar
             </button>
 
             <button 
             onClick={() => navigate("/")}
+
             type="button" 
             className={style.primaryBtn}>
               Voltar

@@ -20,6 +20,23 @@ export default function CadastroPlanta2() {
   // estados para os selects que exibem a "faixa verde"
   const [lote, setLote] = useState("");
   const [localizacao, setLocalizacao] = useState("");
+  const [tipoMuda, setTipoMuda] = useState("");
+  const [altura, setAltura] = useState("");
+  const [diametroCopa, setDiametroCopa] = useState("");
+  const [diametroTronco, setDiametroTronco] = useState("");
+  const [dataPlantio, setDataPlantio] = useState("");
+  const [idadeArvore, setIdadeArvore] = useState("");
+
+  const isLote = lote !== "";
+  const isLocalizacao = localizacao !== "";
+  const isTipoMuda = tipoMuda !== "";
+  const isAltura = altura.trim().length > 0;
+  const isDiametroCopa = diametroCopa.trim().length > 0;
+  const isDiametroTronco = diametroTronco.trim().length > 0;
+  const isDataPlantio = dataPlantio.trim().length > 0;
+  const isIdadeArvore = idadeArvore.trim().length > 0;
+
+  const isFormValid = isLote && isLocalizacao && isTipoMuda && isAltura && isDiametroCopa && isDiametroTronco && isDataPlantio && isIdadeArvore;
 
   const navigate = useNavigate();
 
@@ -40,6 +57,8 @@ export default function CadastroPlanta2() {
                 id="tipoMuda"
                 className={`${style.select} ${style.placeholder}`}
                 defaultValue=""
+                value={tipoMuda}
+                onChange={(e) => setTipoMuda(e.target.value)}
               >
                 <option value="" disabled>
                   Selecione
@@ -59,6 +78,8 @@ export default function CadastroPlanta2() {
                 id="altura"
                 className={style.input}
                 placeholder="Em metros"
+                value={altura}
+                onChange={(e) => setAltura(e.target.value)}
               />
             </div>
 
@@ -71,6 +92,8 @@ export default function CadastroPlanta2() {
                 id="diamCopa"
                 className={style.input}
                 placeholder="Em metros"
+                value={diametroCopa}
+                onChange={(e) => setDiametroCopa(e.target.value)}
               />
             </div>
 
@@ -83,6 +106,8 @@ export default function CadastroPlanta2() {
                 id="diamTronco"
                 className={style.input}
                 placeholder="Em metros"
+                value={diametroTronco}
+                onChange={(e) => setDiametroTronco(e.target.value)}
               />
             </div>
 
@@ -95,6 +120,8 @@ export default function CadastroPlanta2() {
                 id="dataPlantio"
                 className={style.input}
                 placeholder="DD/MM/AA"
+                value={dataPlantio}
+                onChange={(e) => setDataPlantio(e.target.value)}
               />
             </div>
 
@@ -107,6 +134,8 @@ export default function CadastroPlanta2() {
                 id="idadeArvore"
                 className={style.input}
                 placeholder="DD/MM/AA"
+                value={idadeArvore}
+                onChange={(e) => setIdadeArvore(e.target.value)}
               />
             </div>
 
@@ -175,6 +204,7 @@ export default function CadastroPlanta2() {
               onClick={() => navigate("/cadastro/planta/3")}
               type="button"
               className={style.primaryBtn}
+              disabled={!isFormValid}
             >
               Avançar
             </button>
