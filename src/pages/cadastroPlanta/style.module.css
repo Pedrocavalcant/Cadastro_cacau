@@ -7,7 +7,6 @@
   background: #fff;
   border-radius: 26px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
-  background-image: linear-gradient(to bottom, #ffffff 75%, rgba(224, 141, 72, 0.18));
 }
 
 /* Título centralizado */
@@ -24,7 +23,7 @@
 
 .label {
   display: block;
-  font-size: 14px;
+  font-size: 18px;
   margin: 0 0 8px 6px;
   color: #222;
 }
@@ -41,6 +40,7 @@
   border-radius: 16px;
   width: 420px;
   margin: 0 auto; /* Centraliza horizontalmente */
+  font-size: 18px;
 }
 
 .helper {
@@ -58,6 +58,7 @@
   border: none;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
 }
 
 /* Lista de imagens */
@@ -108,7 +109,7 @@
   border-radius: 20px;
   border: 1px solid transparent;
   background: #e3a16f;
-  font-size: 16px;
+  font-size: 18px;
   outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -136,7 +137,7 @@
   border-radius: 10px;
   display: grid;
   place-items: center;
-  font-size: 13px;
+  font-size: 14px;
   margin-left: auto;
   margin-right: auto; /* Centraliza */
 }
