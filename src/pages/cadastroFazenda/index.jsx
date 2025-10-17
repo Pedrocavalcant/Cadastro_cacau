@@ -36,6 +36,16 @@ export default function CadastroFazenda() {
 
   const isFormValid = isNomeFazenda && isCnpj && isProprietario && isAreaCultivo && isEspeciePredominante && isSistemaProdutivo && isDivisaoPlantio
 
+  const formatCnpj = (value) => {
+    let v = value.replace(/\D/g, "");
+    v = v.slice(0, 14);
+    if (v.length > 12) return v.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/, "$1.$2.$3/$4-$5")
+    if (v.length > 8) return v.replace(/(\d)(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3/$4")
+    if (v.length > 5) return v.replace(/(\d{2})(\d{3})(\d{0,3})/, "$1.$2.$3");
+    if (v.length > 2) return v.replace(/(\d{2})(\d{0,2})/, "$1.$2");
+    return v;
+  }
+
 
   const navigate = useNavigate()
   return (
@@ -94,7 +104,7 @@ export default function CadastroFazenda() {
                 placeholder="Digite aqui..."
                 autoComplete="off"
                 value={cnpj}
-                onChange={(e) => setCnpj(e.target.value)}
+                onChange={(e) => setCnpj(formatCnpj(e.target.value))}
               />
             </div>
 
