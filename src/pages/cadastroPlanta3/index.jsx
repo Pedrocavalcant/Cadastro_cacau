@@ -25,9 +25,17 @@ export default function CadastroPlanta3() {
   // Adubação
   const [adubo, setAdubo] = useState("Forth frutas");
   const [naoAdubado, setNaoAdubado] = useState(false);
-  const [dataAdubacao, setDataAdubacao] = useState("DD/MM/AA");
-  const [dataInspecao, setDataInspecao] = useState("DD/MM/AA");
+  const [dataAdubacao, setDataAdubacao] = useState("");
+  const [dataInspecao, setDataInspecao] = useState("");
   const [obs, setObs] = useState("");
+
+  const isAdubo = adubo !== "";
+  const isDataAdubacao = dataAdubacao !== "" ;
+  const isDataInspecao = dataInspecao !== "" ;
+  const isNaoAdubado = !naoAdubado;
+
+
+  const isFormValid = isAdubo && isDataInspecao && (isDataAdubacao || !isNaoAdubado);
 
   const navigate = useNavigate();
 
@@ -152,8 +160,8 @@ export default function CadastroPlanta3() {
                 <div className={style.field}>
                   <label className={style.label}>Data da adubação</label>
                   <input
+                    type="date"
                     className={style.input}
-                    placeholder="DD/MM/AA"
                     value={dataAdubacao}
                     onChange={(e) => setDataAdubacao(e.target.value)}
                     disabled={naoAdubado}
@@ -174,8 +182,8 @@ export default function CadastroPlanta3() {
                 <div className={style.field}>
                   <label className={style.label}>Data da última inspeção</label>
                   <input
+                    type="date"
                     className={style.input}
-                    placeholder="DD/MM/AA"
                     value={dataInspecao}
                     onChange={(e) => setDataInspecao(e.target.value)}
                   />
@@ -205,6 +213,7 @@ export default function CadastroPlanta3() {
               </button>
               <button
                 onClick={() => navigate("/cadastro/planta/4")}
+                disabled={!isFormValid}
                 type="button"
                 className={style.primaryBtn}
               >

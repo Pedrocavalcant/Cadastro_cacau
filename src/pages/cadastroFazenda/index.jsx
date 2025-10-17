@@ -53,6 +53,7 @@ export default function CadastroFazenda() {
                 id="nFazenda"
                 className={style.input}
                 type="text"
+                autoComplete="off"
                 placeholder="Digite aqui..."
                 value={nomeFazenda}
                 onChange={(e) => setNomeFazenda(e.target.value)}
@@ -91,6 +92,7 @@ export default function CadastroFazenda() {
                 className={style.input}
                 type="text"
                 placeholder="Digite aqui..."
+                autoComplete="off"
                 value={cnpj}
                 onChange={(e) => setCnpj(e.target.value)}
               />
@@ -128,6 +130,7 @@ export default function CadastroFazenda() {
                 className={style.input}
                 type="text"
                 placeholder="Digite aqui..."
+                autoComplete="off"
                 value={proprietario}
                 onChange={(e) => setProprietario(e.target.value)}
               />
@@ -165,6 +168,7 @@ export default function CadastroFazenda() {
                 className={style.input}
                 type="text"
                 placeholder="Digite aqui..."
+                autoComplete="off"
                 value={areaCultivo}
                 onChange={(e) => setAreaCultivo(e.target.value)}
               />

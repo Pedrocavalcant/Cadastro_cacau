@@ -6,6 +6,7 @@ import Logo from "../../assets/Logo.png";
 import cacau from "../../public/cacau.png";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
+import formatarDecimal from "../../utils/maskDoisdigitos";
 
 const WelcomeLeft = () => (
   <>
@@ -33,8 +34,8 @@ export default function CadastroPlanta2() {
   const isAltura = altura.trim().length > 0;
   const isDiametroCopa = diametroCopa.trim().length > 0;
   const isDiametroTronco = diametroTronco.trim().length > 0;
-  const isDataPlantio = dataPlantio.trim().length > 0;
-  const isIdadeArvore = idadeArvore.trim().length > 0;
+  const isDataPlantio = dataPlantio !== "";
+  const isIdadeArvore = idadeArvore !== "";
 
   const isFormValid = isLote && isLocalizacao && isTipoMuda && isAltura && isDiametroCopa && isDiametroTronco && isDataPlantio && isIdadeArvore;
 
@@ -78,8 +79,9 @@ export default function CadastroPlanta2() {
                 id="altura"
                 className={style.input}
                 placeholder="Em metros"
+                autoComplete="off"
                 value={altura}
-                onChange={(e) => setAltura(e.target.value)}
+                onChange={(e) => setAltura(formatarDecimal(e.target.value))}
               />
             </div>
 
@@ -92,8 +94,9 @@ export default function CadastroPlanta2() {
                 id="diamCopa"
                 className={style.input}
                 placeholder="Em metros"
+                autoComplete="off"
                 value={diametroCopa}
-                onChange={(e) => setDiametroCopa(e.target.value)}
+                onChange={(e) => setDiametroCopa(formatarDecimal(e.target.value))}
               />
             </div>
 
@@ -106,8 +109,9 @@ export default function CadastroPlanta2() {
                 id="diamTronco"
                 className={style.input}
                 placeholder="Em metros"
+                autoComplete="off"
                 value={diametroTronco}
-                onChange={(e) => setDiametroTronco(e.target.value)}
+                onChange={(e) => setDiametroTronco(formatarDecimal(e.target.value))}
               />
             </div>
 
@@ -117,9 +121,9 @@ export default function CadastroPlanta2() {
                 Data de plantio
               </label>
               <input
+                type="date"
                 id="dataPlantio"
                 className={style.input}
-                placeholder="DD/MM/AA"
                 value={dataPlantio}
                 onChange={(e) => setDataPlantio(e.target.value)}
               />
@@ -131,9 +135,9 @@ export default function CadastroPlanta2() {
                 Idade da árvore
               </label>
               <input
+                type="date"
                 id="idadeArvore"
                 className={style.input}
-                placeholder="DD/MM/AA"
                 value={idadeArvore}
                 onChange={(e) => setIdadeArvore(e.target.value)}
               />

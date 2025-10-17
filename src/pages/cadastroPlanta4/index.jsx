@@ -7,6 +7,7 @@ import cacau from "../../public/cacau.png";
 import { Upload } from "lucide-react";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
+import formatarDecimal from "../../utils/maskDoisdigitos";
 
 const WelcomeLeft = () => (
   <>
@@ -20,8 +21,15 @@ const WelcomeLeft = () => (
 export default function CadastroPlanta4() {
   const inputRef = useRef(null);
   const [file, setFile] = useState(null);
-  const [qtdColheita, setQtdColheita] = useState("");
+  const [qtdColheita, setQtdColheita] = useState('0,00');
   const [dtColheita, setDtColheita] = useState("");
+
+  const isQtdColheita = qtdColheita !== '0,00' && qtdColheita !== "";
+  const isDtColheita = dtColheita !== ""
+
+  const isFormValid = isQtdColheita && isDtColheita;
+
+
 
   function onPick() {
     inputRef.current?.click();
@@ -77,11 +85,13 @@ export default function CadastroPlanta4() {
               Última colheita
             </label>
             <input
+              type="text"
               id="qtd"
               className={style.input}
               placeholder="Em quilos"
+              autoComplete="off"
               value={qtdColheita}
-              onChange={(e) => setQtdColheita(e.target.value)}
+              onChange={(e) => setQtdColheita(formatarDecimal(e.target.value))}
             />
           </section>
 
@@ -91,9 +101,9 @@ export default function CadastroPlanta4() {
               Última colheita
             </label>
             <input
+              type="date"
               id="data"
               className={style.input}
-              placeholder="DD/MM/AA"
               value={dtColheita}
               onChange={(e) => setDtColheita(e.target.value)}
             />
@@ -108,8 +118,11 @@ export default function CadastroPlanta4() {
             >
               Voltar
             </button>
-            <button type="button" className={style.primaryBtn}>
-              Concluir
+            <button 
+            type="button" 
+            disabled={!isFormValid}
+            className={style.primaryBtn}>
+              Cadastro
             </button>
           </div>
         </div>
