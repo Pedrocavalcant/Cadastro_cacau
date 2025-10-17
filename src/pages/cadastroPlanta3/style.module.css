@@ -18,17 +18,11 @@
   background: #fff;
   border-radius: 20px;
   box-shadow: var(--shadow);
-  background-image: linear-gradient(
-    to bottom,
-    #ffffff 78%,
-    rgba(224, 141, 72, 0.18)
-  );
   position: relative;
 }
 
 .title {
   text-align: center;
-  /* font-size: 22px; */
   font-weight: 900;
   letter-spacing: 0.2px;
 

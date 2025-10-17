@@ -7,17 +7,12 @@
   background: #fff;
   border-radius: 26px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
-  background-image: linear-gradient(
-    to bottom,
-    #ffffff 75%,
-    rgba(224, 141, 72, 0.18)
-  );
 }
 
 /* Título */
 .title {
   text-align: center;
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 900;
   margin: 4px 0 16px;
   color: #1e1e1e;
@@ -29,7 +24,7 @@
 
 .label {
   display: block;
-  font-size: 13px;
+  font-size: 18px;
   color: #222;
   margin: 0 0 8px 6px;
 }
@@ -62,6 +57,7 @@
   border: none;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
 }
 
 /* “Pill” verde com nome do arquivo */
@@ -72,7 +68,7 @@
   color: #f2f2f2;
   border-radius: 12px;
   padding: 8px 12px;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 /* Inputs “pill” */
@@ -85,7 +81,7 @@
   border: 1px solid transparent;
   background: #e3a16f;
   padding: 0 14px;
-  font-size: 15px;
+  font-size: 18px;
   outline: none;
 }
 .input::placeholder {
@@ -96,7 +92,7 @@
 .actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 6px;
+  margin-top: 20px;
 }
 
 .primaryBtn {

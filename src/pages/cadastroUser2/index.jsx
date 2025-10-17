@@ -20,7 +20,8 @@ const CadastroFuncionario2 = () => {
   const formatCpf = (value) => {
     let v = value.replace(/\D/g, ""); // remove tudo que não é número
     v = v.slice(0, 11); // limita a 11 dígitos
-    if (v.length > 9) return v.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, "$1.$2.$3-$4");
+    if (v.length > 9)
+      return v.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, "$1.$2.$3-$4");
     if (v.length > 6) return v.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
     if (v.length > 3) return v.replace(/(\d{3})(\d{0,3})/, "$1.$2");
     return v;
@@ -35,6 +36,20 @@ const CadastroFuncionario2 = () => {
     return v;
   };
 
+  const WelcomeLeft = () => {
+    return (
+      <>
+        <img src={Logo} alt="Logo" />
+        <div>
+          <h2 style={{ lineHeight: 1.1 }}>Bem-vindo</h2>
+          <p style={{ opacity: 0.8 }}>
+            Faça seu cadastro de forma fácil e rápida
+          </p>
+        </div>
+      </>
+    );
+  };
+
   // ===== Validações =====
   const isCpf = cpf.replace(/\D/g, "").length === 11;
   const isCelular = celular.replace(/\D/g, "").length >= 10;
@@ -45,22 +60,15 @@ const CadastroFuncionario2 = () => {
   const isUf = uf.trim().length === 2;
 
   const isFormValid =
-    isCpf &&
-    isCelular &&
-    isRua &&
-    isNumeroCasa &&
-    isBairro &&
-    isCidade &&
-    isUf;
+    isCpf && isCelular && isRua && isNumeroCasa && isBairro && isCidade && isUf;
 
   const navigate = useNavigate();
 
   return (
     <div>
       <Header />
-      <Body left={<h2>Bem-vindo</h2>} bgImage={cacau}>
+      <Body left={<WelcomeLeft />} bgImage={cacau}>
         <div className={style.containerInput}>
-
           {/* CPF */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="cpf">

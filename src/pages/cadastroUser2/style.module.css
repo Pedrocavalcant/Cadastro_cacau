@@ -7,11 +7,6 @@
   background: #fff;
   border-radius: 26px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
-  background-image: linear-gradient(
-    to bottom,
-    #ffffff 72%,
-    rgba(224, 141, 72, 0.18)
-  );
 }
 
 /* ====== TIPOGRAFIA DOS RÓTULOS ====== */
@@ -65,6 +60,7 @@
   display: flex;
   justify-content: space-between;
   padding-top: 8px;
+  margin-top: 20px;
 }
 
 .primaryBtn {
