@@ -1,13 +1,13 @@
 .homeContainer {
   display: flex;
   flex-direction: column;
+}
+
+.imagemHeader {
   background-image: url("../../assets/Header.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.imagemHeader {
   width: 100%;
   height: 150px;
   display: flex;
@@ -15,10 +15,8 @@
   align-items: center;
   padding-right: 50px;
   overflow: hidden;
-
-  p {
-    background-color: rgba(255, 255, 255, 0.753);
-  }
+  z-index: 10;
+  position: relative;
 }
 
 .imagemHeader::before {
@@ -26,6 +24,13 @@
   position: absolute;
   inset: 0;
   /* background-image: linear-gradient(to left, #ffffff, transparent); */
+  background: #2a7b9b;
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 0) 21%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 255, 255, 1) 100%
+  );
   z-index: 1;
   height: 240px;
 }
@@ -43,13 +48,16 @@
   text-align: center;
 }
 
+h2 {
+  font-weight: 500;
+}
+
 .spanStrong {
   color: var(--color-dark);
   font-family: var(--title-font);
 }
 
 .containerBody {
-  background-color: rgba(255, 255, 255, 0.753);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,7 +69,7 @@
   margin-top: 15px;
   padding: 10px 110px;
   border: 5px solid var(--color-icon);
-  border-radius: 35px;
+  border-radius: 15px;
   font-family: var(--title-font);
   font-size: 1.6rem;
 }
@@ -69,6 +77,14 @@
 .buttonPage {
   display: flex;
   flex-direction: column;
+  width: 250px;
+  text-align: center;
+  button {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    margin-bottom: 10px;
+  }
 }
 
 .containerButton {
@@ -107,8 +123,8 @@
 }
 
 .containerFooter {
-  background-color: rgba(255, 255, 255, 0.753);
-  padding-top: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -124,30 +140,37 @@
 }
 
 .imagemFooter {
-  /* background-image: url("../../assets/Relatorios.png");
+  background-image: url("../../assets/Relatorios.png");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; */
-  width: 100%;
-  height: 200px;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: end;
   padding-bottom: 20px;
   overflow: hidden;
+
+  padding: 10px 110px;
+  border-radius: 15px;
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .imagemFooter::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* background-image: linear-gradient(to top, #ffffff 5%, transparent 15%); */
+  background-image: linear-gradient(to top, #ffffff 5%, transparent 30%);
   z-index: 1;
 }
 
 .textFooter {
   color: var(--color-icon);
   font-family: var(--title-font);
+  font-size: 1.7rem;
   z-index: 2;
   width: 400px;
   text-align: center;

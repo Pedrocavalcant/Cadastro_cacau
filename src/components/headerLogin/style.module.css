@@ -1,6 +1,6 @@
-.header{
-    display: flex;
-    background-color: var(--color-orange);
-    height: 88px;
-    border-radius: 0 0 33px 33px;
+.header {
+  display: flex;
+  background-color: var(--color-orange);
+  height: 88px;
+  border-radius: 0 0 33px 33px;
 }
