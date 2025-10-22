@@ -91,3 +91,76 @@
     border-radius: 33px;
   }
 }
+
+@media (max-width: 500px) {
+  .body {
+    .cardContainer {
+      flex-direction: column;
+      width: 90%;
+      height: auto;
+      margin-top: 50px;
+
+      .leftPanel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        padding: 20px 0;
+
+        h2 {
+          font-size: 32px;
+        }
+      }
+
+      &::after {
+        display: none;
+      }
+
+      .rightPanel {
+        width: 100%;
+        padding: 20px 0;
+
+        .cardRight {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1050px) {
+  .body {
+    .cardContainer {
+      flex-direction: column;
+      width: 90%;
+      height: auto;
+      margin-top: 50px;
+
+      .leftPanel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        padding: 20px 0;
+
+        h2 {
+          font-size: 32px;
+        }
+      }
+
+      &::after {
+        display: none;
+      }
+
+      .rightPanel {
+        width: 100%;
+        padding: 20px 0;
+
+        .cardRight {
+          width: 100%;
+          margin: auto;
+          padding: 20px 32px;
+        }
+      }
+    }
+  }
+}
