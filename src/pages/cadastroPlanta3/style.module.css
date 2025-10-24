@@ -233,11 +233,11 @@
   font-size: 14px;
   box-shadow: 0 5px 16px rgba(225, 128, 36, 0.3);
   cursor: pointer;
-  transition: transform 0.06s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  transition: all .3s ease, filter 0.15s ease, box-shadow 0.15s ease;
 }
 .primaryBtn:hover {
   filter: brightness(1.08);
-  box-shadow: 0 6px 18px rgba(225, 128, 36, 0.4);
+  background-color: #724113;
 }
 .primaryBtn:active {
   transform: translateY(1px);

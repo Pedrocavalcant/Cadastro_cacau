@@ -82,10 +82,11 @@
   background-color: var(--color-button, #e18024);
   box-shadow: 0 8px 18px rgba(225, 128, 36, 0.35);
   cursor: pointer;
-  transition: transform 0.06s ease, filter 0.15s ease;
+  transition: all .3s ease, filter 0.15s ease;
 }
 .buttonNext:hover {
   filter: brightness(1.05);
+  background-color: #724113;
 }
 .buttonNext:active {
   transform: translateY(1px);

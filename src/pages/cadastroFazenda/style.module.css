@@ -103,11 +103,12 @@
   background: var(--color-button, #e18024);
   color: var(--color-white, #fff);
   box-shadow: 0 6px 14px rgba(225, 128, 36, 0.35);
-  transition: transform 0.06s ease, filter 0.15s ease;
+  transition: all .3s ease, filter 0.15s ease;
 }
 .primaryBtn:active {
   transform: translateY(1px);
 }
 .primaryBtn:hover {
   filter: brightness(1.05);
+  background-color: #724113;
 }

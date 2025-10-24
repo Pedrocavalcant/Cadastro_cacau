@@ -161,11 +161,12 @@
   font-size: 18px;
   box-shadow: 0 8px 18px rgba(225, 128, 36, 0.35);
   cursor: pointer;
-  transition: transform 0.06s ease, filter 0.15s ease;
+  transition: all .3s ease, filter 0.15s ease;
 }
 
 .primaryBtn:hover {
   filter: brightness(1.05);
+  background-color: #724113;
 }
 
 .primaryBtn:active {
