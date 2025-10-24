@@ -79,10 +79,10 @@ h2 {
   flex-direction: column;
   width: 250px;
   text-align: center;
+
   button {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-
     margin-bottom: 10px;
   }
 }
@@ -104,13 +104,6 @@ h2 {
 .buttonImage3 {
   background-image: url("../../assets/CadastroFuncionario.png");
 }
-
-.buttonImage1:hover,
-.buttonImage2:hover,
-.buttonImage3:hover {
-  cursor: pointer;
-}
-
 .buttonImage1,
 .buttonImage2,
 .buttonImage3 {
@@ -120,7 +113,17 @@ h2 {
   border: none;
   border-radius: 15px;
   z-index: 3;
+  transition: all .3s ease;
 }
+
+.buttonImage1:hover,
+.buttonImage2:hover,
+.buttonImage3:hover {
+  cursor: pointer;
+  opacity: .9;
+  box-shadow: 0 0 2px 3px var(--color-orange);
+}
+
 
 .containerFooter {
   margin-top: 30px;

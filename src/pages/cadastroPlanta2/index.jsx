@@ -140,6 +140,7 @@ export default function CadastroPlanta2() {
                 className={style.input}
                 value={idadeArvore}
                 onChange={(e) => setIdadeArvore(e.target.value)}
+                
               />
             </div>
 
