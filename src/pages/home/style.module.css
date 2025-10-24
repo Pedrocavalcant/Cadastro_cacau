@@ -1,6 +1,10 @@
 .homeContainer {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-y: visible; /* allow body-level scrolling */
 }
 
 .imagemHeader {
@@ -127,13 +131,15 @@ h2 {
 
 .containerFooter {
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+  padding-bottom: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   position: relative;
+  width: 100%;
 }
 
 .titleFooter {
@@ -294,5 +300,11 @@ h2 {
 
   .imagemFooter::before {
     background-image: linear-gradient(to top, #ffffff 30%, transparent 50%);
+  }
+}
+
+@media (max-width: 1400px) {
+  .homeContainer {
+    overflow-y: auto;
   }
 }
