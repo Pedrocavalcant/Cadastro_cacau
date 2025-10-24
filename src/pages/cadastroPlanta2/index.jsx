@@ -57,7 +57,6 @@ export default function CadastroPlanta2() {
               <select
                 id="tipoMuda"
                 className={`${style.select} ${style.placeholder}`}
-                defaultValue=""
                 value={tipoMuda}
                 onChange={(e) => setTipoMuda(e.target.value)}
               >
