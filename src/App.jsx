@@ -12,6 +12,9 @@ import CadastroPlanta4 from "./pages/cadastroPlanta4/index.jsx"
 import Login from "./pages/login/index.jsx"
 import NotFound from "./pages/notFound/index.jsx"
 import Relatorios from "./pages/relatorios/index.jsx"
+import RelatorioFuncionario from "./pages/relatorioFuncionario/index.jsx"
+import RelatorioPlanta from "./pages/relatorioPlanta/index.jsx"
+import RelatorioFazenda from "./pages/relatorioFazenda/index.jsx"
 
 // imports kept minimal; HeaderLogin isn't used here
 
@@ -30,6 +33,9 @@ function App() {
       <Route path="/cadastro/planta/3" element={<CadastroPlanta3/>}/>
       <Route path="/cadastro/planta/4" element={<CadastroPlanta4/>}/>
       <Route path="/relatorios" element={<Relatorios/>}/>
+      <Route path="/relatorio/funcionario" element={<RelatorioFuncionario/>}/>
+      <Route path="/relatorio/planta" element={<RelatorioPlanta/>}/>
+      <Route path="/relatorio/fazenda" element={<RelatorioFazenda/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="*" element={<NotFound/>}/> 
     </Routes>

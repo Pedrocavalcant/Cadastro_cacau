@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  min-height: calc(100vh - 140px);
+}
+
+.card {
+  background-color: #fff;
+  padding: 2.5rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 1000px;
+  border: 3px solid #d9d9d9;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1.8rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem 1.6rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.input {
+  background-color: #e6a96b;
+  border: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 10px;
+  color: #000;
+  font-size: 0.95rem;
+}
+
+.input:focus {
+  outline: 2px solid #c4752f;
+}
+
+.fieldFull {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  background-color: #e6a96b;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 0.8rem;
+  min-height: 100px;
+  resize: none;
+  color: #000;
+  font-size: 0.95rem;
+}
+
+.textarea:focus {
+  outline: 2px solid #c4752f;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.6rem;
+}
+
+.voltarBtn {
+  background-color: #c4752f;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 16px;
+  padding: 0.6rem 1.6rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.voltarBtn:hover {
+  background-color: #a85d1d;
+}

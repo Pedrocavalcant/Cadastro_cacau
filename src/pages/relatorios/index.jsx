@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Body from "../../components/Body";
 import Footer from "../../components/Footer";
@@ -10,19 +11,19 @@ const LeftPanel = () => (
   <>
     <img src={Logo} alt="Logo" className={style.logo} />
     <div>
-      <h2 style={{ lineHeight: 1.1 }}>Cadastro da Planta</h2>
+      <h2 style={{ lineHeight: 1.1 }}>Relatórios</h2>
     </div>
   </>
 );
 
 export default function Relatorios() {
+  const navigate = useNavigate();
   const [tipoRelatorio, setTipoRelatorio] = useState("");
   const [codigo, setCodigo] = useState("");
 
-  const isTiporelatorio = tipoRelatorio !== ""
-  const isCodigo = codigo.trim().length > 0
-
-  const isFormValid = isTiporelatorio && isCodigo
+  const isTiporelatorio = tipoRelatorio !== "";
+  const isCodigo = codigo.trim().length > 0;
+  const isFormValid = isTiporelatorio && isCodigo;
 
   const handlePlaceholder = () => {
     switch (tipoRelatorio) {
@@ -37,6 +38,15 @@ export default function Relatorios() {
     }
   };
 
+  const handleBuscar = () => {
+    if (tipoRelatorio === "Funcionário") {
+      navigate("/relatorio/funcionario");
+    } else if (tipoRelatorio === "Planta") {
+      navigate("/relatorio/planta");
+    } else if (tipoRelatorio === "Fazenda") {
+      navigate("/relatorio/fazenda");
+    }
+  };
 
   return (
     <>
@@ -51,11 +61,15 @@ export default function Relatorios() {
             </label>
             <select
               id="tipoRelatorio"
-              className={`${style.select} ${!tipoRelatorio ? style.placeholder : ""}`}
+              className={`${style.select} ${
+                !tipoRelatorio ? style.placeholder : ""
+              }`}
               value={tipoRelatorio}
               onChange={(e) => setTipoRelatorio(e.target.value)}
             >
-              <option value="" disabled>Selecione</option>
+              <option value="" disabled>
+                Selecione
+              </option>
               <option value="Planta">Planta</option>
               <option value="Fazenda">Fazenda</option>
               <option value="Funcionário">Funcionário</option>
@@ -86,7 +100,8 @@ export default function Relatorios() {
             <button
               type="button"
               className={style.primaryBtn}
-              disabled={isFormValid}
+              disabled={!isFormValid}
+              onClick={handleBuscar}
             >
               Buscar
             </button>

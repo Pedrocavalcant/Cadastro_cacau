@@ -1,0 +1,80 @@
+.containerPrincipal {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.cardRelatorio {
+  width: 80%;
+  max-width: 900px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #a2a2a2;
+  padding: 40px 50px;
+}
+
+.titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #000;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 40px;
+}
+
+.campo,
+.campoUnico {
+  display: flex;
+  flex-direction: column;
+}
+
+.campoUnico {
+  grid-column: span 2;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+input {
+  height: 35px;
+  border: none;
+  border-radius: 3px;
+  background-color: #d78c4d;
+  outline: none;
+  padding: 0 10px;
+  color: #000;
+  font-size: 0.95rem;
+}
+
+input::placeholder {
+  color: #555;
+}
+
+.containerBotao {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.botaoVoltar {
+  background-color: #d66a1c;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.botaoVoltar:hover {
+  background-color: #b35315;
+}
