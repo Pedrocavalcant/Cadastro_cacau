@@ -58,13 +58,12 @@ const Home = () => {
       </div>
 
       <div className={style.containerFooter}>
-        <h2 className={style.titleFooter}>Relatórios</h2>
+        <button className={style.titleFooter} type="button" onClick={() => navigate("/relatorios")}>Relatórios</button>
         <div className={style.imagemFooter}>
           <p className={style.textFooter}>
             <span className={style.spanStrong}>Do campo para a tela:</span> veja
             o que sua plantação tem a dizer
           </p>
-          {/* <button className={style.footerBotton} type="button"></button> */}
         </div>
       </div>
       <Footer />

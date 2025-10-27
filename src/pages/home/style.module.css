@@ -147,7 +147,14 @@ h2 {
   padding: 10px 110px;
   border: 5px solid var(--color-icon);
   border-radius: 15px;
-  z-index: 2;
+  z-index: 999;
+  transition: all .3s ease;
+
+  &&:hover{
+    cursor: pointer;
+    opacity: .9;
+    box-shadow: 0 0 2px 3px var(--color-orange);
+  }
 }
 
 .imagemFooter {
