@@ -1,5 +1,6 @@
 
 import { Route, Routes } from "react-router-dom"
+import { PlantaProvider } from "./context/PlantaContext"
 import CadastroFuncionario from "./pages/cadastroUser1/index.jsx"
 import style from "./style.module.css"
 import Home from "./pages/home/index.jsx"
@@ -23,7 +24,7 @@ import RelatorioFazenda from "./pages/relatorioFazenda/index.jsx"
 function App() {
 
   return (
-    <>    
+    <PlantaProvider>    
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/cadastro/funcionario" element={<CadastroFuncionario/>}/>
@@ -40,7 +41,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="*" element={<NotFound/>}/> 
     </Routes>
-    </>
+    </PlantaProvider>
   )
 }
 

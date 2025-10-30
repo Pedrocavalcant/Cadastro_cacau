@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import cacau from "../../public/cacau.png";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
+import { usePlantaContext } from "../../context/PlantaContext";
 
 const WelcomeLeft = () => (
   <>
@@ -17,17 +18,20 @@ const WelcomeLeft = () => (
 );
 
 export default function CadastroPlanta3() {
+  const navigate = useNavigate();
+  const { plantaData, updatePlantaData } = usePlantaContext();
+
   // Situação
-  const [situacao, setSituacao] = useState("doente");
-  const [doenca, setDoenca] = useState("");
-  const [tratamento, setTratamento] = useState("");
+  const [situacao, setSituacao] = useState(plantaData.situacao || "saudavel");
+  const [doenca, setDoenca] = useState(plantaData.doenca || "");
+  const [tratamento, setTratamento] = useState(plantaData.tratamento || "");
 
   // Adubação
-  const [adubo, setAdubo] = useState("Forth frutas");
-  const [naoAdubado, setNaoAdubado] = useState(false);
-  const [dataAdubacao, setDataAdubacao] = useState("");
-  const [dataInspecao, setDataInspecao] = useState("");
-  const [obs, setObs] = useState("");
+  const [adubo, setAdubo] = useState(plantaData.adubo || "Forth frutas");
+  const [naoAdubado, setNaoAdubado] = useState(plantaData.nao_foi_adubado || false);
+  const [dataAdubacao, setDataAdubacao] = useState(plantaData.data_adubacao || "");
+  const [dataInspecao, setDataInspecao] = useState(plantaData.data_ultima_inspecao || "");
+  const [obs, setObs] = useState(plantaData.observacoes || "");
 
   const isAdubo = adubo !== "";
   const isDataAdubacao = dataAdubacao !== "" ;
@@ -36,8 +40,6 @@ export default function CadastroPlanta3() {
 
 
   const isFormValid = isAdubo && isDataInspecao && (isDataAdubacao || !isNaoAdubado);
-
-  const navigate = useNavigate();
 
   return (
     <>
@@ -212,7 +214,19 @@ export default function CadastroPlanta3() {
                 Voltar
               </button>
               <button
-                onClick={() => navigate("/cadastro/planta/4")}
+                onClick={() => {
+                  updatePlantaData({
+                    situacao,
+                    doenca: situacao === "doente" ? doenca : "",
+                    tratamento: situacao === "em_tratamento" ? tratamento : "",
+                    adubo,
+                    data_adubacao: dataAdubacao,
+                    data_ultima_inspecao: dataInspecao,
+                    nao_foi_adubado: naoAdubado,
+                    observacoes: obs
+                  });
+                  navigate("/cadastro/planta/4");
+                }}
                 disabled={!isFormValid}
                 type="button"
                 className={style.primaryBtn}

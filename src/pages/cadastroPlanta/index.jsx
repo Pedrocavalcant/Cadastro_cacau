@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import { Upload, QrCode } from "lucide-react";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
+import { usePlantaContext } from "../../context/PlantaContext";
 
 const WelcomeLeft = () => {
   return (
@@ -21,13 +22,16 @@ const WelcomeLeft = () => {
 
 export default function CadastroPlanta() {
   const inputRef = useRef(null);
-  const [files, setFiles] = useState([]);
-  const [especie, setEspecie] = useState("");
+  const navigate = useNavigate();
+  const { plantaData, updatePlantaData } = usePlantaContext();
+  const [files, setFiles] = useState(plantaData.imagens || []);
+  const [especie, setEspecie] = useState(plantaData.especie || "");
+  const [codigo, setCodigo] = useState(plantaData.codigo_individual || "");
 
   const isEspecie = especie !== "";
+  const isCodigo = codigo !== "";
 
-  const isFormValid = isEspecie;
-  const navigate = useNavigate();
+  const isFormValid = isEspecie && isCodigo;
 
   function onPick() {
     inputRef.current?.click();
@@ -78,13 +82,16 @@ export default function CadastroPlanta() {
           </section>
 
           {/* Código Individual */}
-          <section className={style.qrSection}>
-            <label className={style.label}>Código Individual</label>
-            <div className={style.qrContainer}>
-              <div className={style.qrBox}>
-                <QrCode size={92} />
-              </div>
-            </div>
+          <section className={style.block}>
+            <label className={style.label} htmlFor="codigo">Código Individual</label>
+            <input
+              id="codigo"
+              className={style.input}
+              type="text"
+              placeholder="Digite o código da planta"
+              value={codigo}
+              onChange={(e) => setCodigo(e.target.value)}
+            />
           </section>
 
           {/* Espécie */}
@@ -116,7 +123,14 @@ export default function CadastroPlanta() {
           {/* Botão */}
           <div className={style.actions}>
             <button
-              onClick={() => navigate("/cadastro/planta/2")}
+              onClick={() => {
+                updatePlantaData({
+                  imagens: files,
+                  especie,
+                  codigo_individual: codigo
+                });
+                navigate("/cadastro/planta/2");
+              }}
               type="button"
               className={style.primaryBtn}
               disabled={!isFormValid}

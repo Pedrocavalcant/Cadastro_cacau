@@ -10,6 +10,14 @@ db.version(1).stores({
   funcionarios: '++id, nome, cpf, cargo, fazenda_id'
 });
 
+// Versão 2: adiciona índices para createdAt/updatedAt usados pelo serviço
+// (necessário para usar orderBy('createdAt') sem erro de SchemaError)
+db.version(2).stores({
+  plantas: '++id, codigo_individual, especie, data_plantio, situacao, ultima_colheita_peso, data_ultima_colheita, createdAt, updatedAt',
+  fazendas: '++id, nome, localizacao, responsavel',
+  funcionarios: '++id, nome, cpf, cargo, fazenda_id'
+});
+
 // Definindo os tipos de dados para TypeScript-like intellisense
 export const PlantSchema = {
   id: Number,

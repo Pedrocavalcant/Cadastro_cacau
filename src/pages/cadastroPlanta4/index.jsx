@@ -8,6 +8,8 @@ import { Upload } from "lucide-react";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import formatarDecimal from "../../utils/maskDoisdigitos";
+import { usePlantaContext } from "../../context/PlantaContext";
+import { usePlantas } from "../../hooks/usePlantas";
 
 const WelcomeLeft = () => (
   <>
@@ -19,17 +21,20 @@ const WelcomeLeft = () => (
 );
 
 export default function CadastroPlanta4() {
+  const navigate = useNavigate();
+  const { plantaData, updatePlantaData } = usePlantaContext();
+  const { createPlanta } = usePlantas();
+  const [loading, setLoading] = useState(false);
+
   const inputRef = useRef(null);
-  const [file, setFile] = useState(null);
-  const [qtdColheita, setQtdColheita] = useState('0,00');
-  const [dtColheita, setDtColheita] = useState("");
+  const [file, setFile] = useState(plantaData.qr_code || null);
+  const [qtdColheita, setQtdColheita] = useState(plantaData.ultima_colheita_peso || '0,00');
+  const [dtColheita, setDtColheita] = useState(plantaData.data_ultima_colheita || "");
 
   const isQtdColheita = qtdColheita !== '0,00' && qtdColheita !== "";
-  const isDtColheita = dtColheita !== ""
+  const isDtColheita = dtColheita !== "";
 
   const isFormValid = isQtdColheita && isDtColheita;
-
-
 
   function onPick() {
     inputRef.current?.click();
@@ -41,7 +46,33 @@ export default function CadastroPlanta4() {
     setFile(f); // máx. 1
   }
 
-  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      
+      // Atualiza os dados finais no contexto
+      const finalData = {
+        ...plantaData,
+        qr_code: file,
+        ultima_colheita_peso: qtdColheita,
+        data_ultima_colheita: dtColheita
+      };
+      
+      updatePlantaData(finalData);
+
+      // Salva todos os dados no banco
+      await createPlanta(finalData);
+      
+      // Redireciona para a home com mensagem de sucesso
+      alert('Planta cadastrada com sucesso!');
+      navigate("/");
+    } catch (error) {
+      console.error('Erro ao salvar planta:', error);
+      alert('Erro ao salvar planta. Por favor, tente novamente.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -109,20 +140,23 @@ export default function CadastroPlanta4() {
             />
           </section>
 
-          {/* Botão */}
+          {/* Botões */}
           <div className={style.actions}>
             <button
               onClick={() => navigate("/cadastro/planta/3")}
               type="button"
               className={style.primaryBtn}
+              disabled={loading}
             >
               Voltar
             </button>
             <button 
-            type="button" 
-            disabled={!isFormValid}
-            className={style.primaryBtn}>
-              Cadastro
+              type="button" 
+              onClick={handleSubmit}
+              disabled={!isFormValid || loading}
+              className={style.primaryBtn}
+            >
+              {loading ? 'Salvando...' : 'Concluir Cadastro'}
             </button>
           </div>
         </div>

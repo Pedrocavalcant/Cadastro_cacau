@@ -7,6 +7,7 @@ import cacau from "../../public/cacau.png";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import formatarDecimal from "../../utils/maskDoisdigitos";
+import { usePlantaContext } from "../../context/PlantaContext";
 
 const WelcomeLeft = () => (
   <>
@@ -18,15 +19,17 @@ const WelcomeLeft = () => (
 );
 
 export default function CadastroPlanta2() {
-  // estados para os selects que exibem a "faixa verde"
-  const [lote, setLote] = useState("");
-  const [localizacao, setLocalizacao] = useState("");
-  const [tipoMuda, setTipoMuda] = useState("");
-  const [altura, setAltura] = useState("");
-  const [diametroCopa, setDiametroCopa] = useState("");
-  const [diametroTronco, setDiametroTronco] = useState("");
-  const [dataPlantio, setDataPlantio] = useState("");
-  const [idadeArvore, setIdadeArvore] = useState("");
+  const navigate = useNavigate();
+  const { plantaData, updatePlantaData } = usePlantaContext();
+
+  const [lote, setLote] = useState(plantaData.lote || "");
+  const [localizacao, setLocalizacao] = useState(plantaData.localizacao || "");
+  const [tipoMuda, setTipoMuda] = useState(plantaData.tipo_muda || "");
+  const [altura, setAltura] = useState(plantaData.altura_metros || "");
+  const [diametroCopa, setDiametroCopa] = useState(plantaData.diametro_copa_metros || "");
+  const [diametroTronco, setDiametroTronco] = useState(plantaData.diametro_tronco_metros || "");
+  const [dataPlantio, setDataPlantio] = useState(plantaData.data_plantio || "");
+  const [idadeArvore, setIdadeArvore] = useState(plantaData.idade_arvore || "");
 
   const isLote = lote !== "";
   const isLocalizacao = localizacao !== "";
@@ -38,8 +41,6 @@ export default function CadastroPlanta2() {
   const isIdadeArvore = idadeArvore !== "";
 
   const isFormValid = isLote && isLocalizacao && isTipoMuda && isAltura && isDiametroCopa && isDiametroTronco && isDataPlantio && isIdadeArvore;
-
-  const navigate = useNavigate();
 
   return (
     <>
