@@ -40,11 +40,11 @@ export default function Relatorios() {
 
   const handleBuscar = () => {
     if (tipoRelatorio === "Funcionário") {
-      navigate("/relatorio/funcionario");
+      navigate("/relatorio/funcionario", { state: { codigo } });
     } else if (tipoRelatorio === "Planta") {
-      navigate("/relatorio/planta");
+      navigate("/relatorio/planta", { state: { codigo } });
     } else if (tipoRelatorio === "Fazenda") {
-      navigate("/relatorio/fazenda");
+      navigate("/relatorio/fazenda", { state: { codigo } });
     }
   };
 
@@ -104,6 +104,14 @@ export default function Relatorios() {
               onClick={handleBuscar}
             >
               Buscar
+            </button>
+            <button
+              type="button"
+              className={style.primaryBtn}
+              onClick={() => navigate('/')}
+              style={{ marginLeft: 8 }}
+            >
+              Voltar
             </button>
           </div>
         </div>

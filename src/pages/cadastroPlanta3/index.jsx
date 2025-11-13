@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Body from "../../components/Body";
 import Logo from "../../assets/Logo.png";
@@ -40,6 +40,20 @@ export default function CadastroPlanta3() {
 
 
   const isFormValid = isAdubo && isDataInspecao && (isDataAdubacao || !isNaoAdubado);
+
+  // Salvar dados no contexto sempre que houver mudanças
+  useEffect(() => {
+    updatePlantaData({
+      situacao,
+      doenca,
+      tratamento,
+      adubo,
+      nao_foi_adubado: naoAdubado,
+      data_adubacao: dataAdubacao,
+      data_ultima_inspecao: dataInspecao,
+      observacoes: obs
+    });
+  }, [situacao, doenca, tratamento, adubo, naoAdubado, dataAdubacao, dataInspecao, obs]);
 
   return (
     <>
