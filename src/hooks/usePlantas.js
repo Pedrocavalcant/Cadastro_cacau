@@ -35,6 +35,25 @@ export const usePlantas = () => {
     setLoading(true);
     setError(null);
     try {
+      // Gera dados fake compatíveis com o create caso não seja informado
+      if (!plantaData) {
+        const now = new Date();
+        plantaData = {
+          codigo_individual: `DEMO-${now.getTime()}`,
+          identificacao: {
+            especie: 'Cacau Demo',
+            variedade: 'Forastero',
+          },
+          detalhes_plantio: {
+            data_plantio: now.toISOString().slice(0, 10),
+            local: 'Talhão Demo',
+          },
+          status: {
+            situacao: 'Saudável',
+          },
+        };
+      }
+      
       const id = await PlantaService.create(plantaData);
       await loadPlantas(); // Recarregar lista
       return id;
