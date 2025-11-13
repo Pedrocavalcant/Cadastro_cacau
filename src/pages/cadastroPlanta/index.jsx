@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Logo from "../../assets/Logo.png";
 import cacau from "../../public/cacau.png";
 import Header from "../../components/Header";
@@ -32,6 +32,15 @@ export default function CadastroPlanta() {
   const isCodigo = codigo !== "";
 
   const isFormValid = isEspecie && isCodigo;
+
+  // Salvar dados no contexto sempre que houver mudanças
+  useEffect(() => {
+    updatePlantaData({
+      imagens: files,
+      especie,
+      codigo_individual: codigo
+    });
+  }, [files, especie, codigo]);
 
   function onPick() {
     inputRef.current?.click();

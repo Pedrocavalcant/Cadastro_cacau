@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Body from "../../components/Body";
 import Footer from "../../components/Footer";
@@ -30,6 +30,20 @@ export default function CadastroPlanta2() {
   const [diametroTronco, setDiametroTronco] = useState(plantaData.diametro_tronco_metros || "");
   const [dataPlantio, setDataPlantio] = useState(plantaData.data_plantio || "");
   const [idadeArvore, setIdadeArvore] = useState(plantaData.idade_arvore || "");
+
+  // Salvar dados no contexto sempre que houver mudanças
+  useEffect(() => {
+    updatePlantaData({
+      lote,
+      localizacao,
+      tipo_muda: tipoMuda,
+      altura_metros: altura,
+      diametro_copa_metros: diametroCopa,
+      diametro_tronco_metros: diametroTronco,
+      data_plantio: dataPlantio,
+      idade_arvore: idadeArvore
+    });
+  }, [lote, localizacao, tipoMuda, altura, diametroCopa, diametroTronco, dataPlantio, idadeArvore]);
 
   const isLote = lote !== "";
   const isLocalizacao = localizacao !== "";
