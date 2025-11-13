@@ -5,6 +5,7 @@ import Header from "../../components/Header"
 import Body from "../../components/Body"
 import style from "./style.module.css"
 import { useNavigate } from "react-router-dom"
+import { useFazendas } from "../../hooks/useFazendas.js"
 
 const WelcomeLeft = () => {
   return (
@@ -18,6 +19,9 @@ const WelcomeLeft = () => {
 }
 
 export default function CadastroFazenda() {
+  const { createFazenda, loading } = useFazendas()
+  const navigate = useNavigate()
+  
   const [nomeFazenda, setNomeFazenda] = useState("")
   const [cnpj, setCnpj] = useState("")
   const [proprietario, setProprietario] = useState("")
@@ -25,6 +29,7 @@ export default function CadastroFazenda() {
   const [especiePredominante, setEspeciePredominante] = useState("")
   const [sistemaProdutivo, setSistemaProdutivo] = useState("")
   const [divisaoPlantio, setDivisaoPlantio] = useState("")
+  const [error, setError] = useState(null)
 
   const isNomeFazenda = nomeFazenda.trim().length > 0
   const isCnpj = cnpj.trim().length > 13
@@ -46,8 +51,40 @@ export default function CadastroFazenda() {
     return v;
   }
 
-
-  const navigate = useNavigate()
+  const handleCadastrar = async () => {
+    if (!isFormValid) return;
+    
+    setError(null);
+    try {
+      const fazendaData = {
+        nome: nomeFazenda.trim(),
+        cnpj: cnpj.replace(/\D/g, ''),
+        proprietario: proprietario.trim(),
+        areaCultivo: areaCultivo.trim(),
+        especiePredominante,
+        sistemaProdutivo,
+        divisaoPlantio
+      };
+      
+      await createFazenda(fazendaData);
+      alert('Fazenda cadastrada com sucesso!');
+      
+      // Limpar formulário
+      setNomeFazenda("");
+      setCnpj("");
+      setProprietario("");
+      setAreaCultivo("");
+      setEspeciePredominante("");
+      setSistemaProdutivo("");
+      setDivisaoPlantio("");
+      
+      // Opcional: navegar para home
+      // navigate("/");
+    } catch (err) {
+      setError(err.message || 'Erro ao cadastrar fazenda');
+      console.error('Erro ao cadastrar fazenda:', err);
+    }
+  }
   return (
     <>
       <Header />
@@ -187,13 +224,20 @@ export default function CadastroFazenda() {
             <div className={style.field} /> {/* espaço vazio para manter a grade em 2 colunas */}
           </div>
 
+          {error && (
+            <div style={{ color: 'red', marginBottom: '10px', padding: '10px', background: '#fee', borderRadius: '4px' }}>
+              {error}
+            </div>
+          )}
+
           <div className={style.actions}>
             <button 
             type="button" 
             className={style.primaryBtn}
-            disabled={!isFormValid}
+            disabled={!isFormValid || loading}
+            onClick={handleCadastrar}
             >
-              Cadastrar
+              {loading ? 'Cadastrando...' : 'Cadastrar'}
             </button>
 
             <button 

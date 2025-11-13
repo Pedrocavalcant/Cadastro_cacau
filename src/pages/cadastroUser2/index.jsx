@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../assets/Logo.png";
 import cacau from "../../public/cacau.png";
 import Header from "../../components/Header";
@@ -6,15 +6,22 @@ import Body from "../../components/Body";
 import Footer from "../../components/Footer";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
+import { useFuncionarioContext } from "../../context/FuncionarioContext";
+import { useFuncionarios } from "../../hooks/useFuncionarios.js";
 
 const CadastroFuncionario2 = () => {
-  const [cpf, setCpf] = useState("");
-  const [celular, setCelular] = useState("");
-  const [rua, setRua] = useState("");
-  const [numeroCasa, setNumeroCasa] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [uf, setUf] = useState("");
+  const { funcionarioData, updateFuncionarioData, clearFuncionarioData } = useFuncionarioContext();
+  const { createFuncionario, loading } = useFuncionarios();
+  const navigate = useNavigate();
+  
+  const [cpf, setCpf] = useState(funcionarioData.cpf || "");
+  const [celular, setCelular] = useState(funcionarioData.celular || "");
+  const [rua, setRua] = useState(funcionarioData.endereco?.rua || "");
+  const [numeroCasa, setNumeroCasa] = useState(funcionarioData.endereco?.numero || "");
+  const [bairro, setBairro] = useState(funcionarioData.endereco?.bairro || "");
+  const [cidade, setCidade] = useState(funcionarioData.endereco?.cidade || "");
+  const [uf, setUf] = useState(funcionarioData.endereco?.uf || "");
+  const [error, setError] = useState(null);
 
   // ===== Funções de máscara =====
   const formatCpf = (value) => {
@@ -62,7 +69,57 @@ const CadastroFuncionario2 = () => {
   const isFormValid =
     isCpf && isCelular && isRua && isNumeroCasa && isBairro && isCidade && isUf;
 
-  const navigate = useNavigate();
+  // Salvar dados no contexto sempre que houver mudanças
+  useEffect(() => {
+    updateFuncionarioData({
+      cpf,
+      celular,
+      endereco: {
+        rua,
+        numero: numeroCasa,
+        bairro,
+        cidade,
+        uf: uf.toUpperCase()
+      }
+    });
+  }, [cpf, celular, rua, numeroCasa, bairro, cidade, uf, updateFuncionarioData]);
+
+  const handleCadastrar = async () => {
+    if (!isFormValid) return;
+    
+    setError(null);
+    try {
+      // Combinar dados das duas telas
+      const funcionarioDataCompleto = {
+        nome: funcionarioData.nome,
+        usuario: funcionarioData.usuario,
+        email: funcionarioData.email,
+        senha: funcionarioData.senha,
+        cpf: cpf.replace(/\D/g, ''),
+        celular: celular.replace(/\D/g, ''),
+        endereco: {
+          rua: rua.trim(),
+          numero: numeroCasa.trim(),
+          bairro: bairro.trim(),
+          cidade: cidade.trim(),
+          uf: uf.toUpperCase().trim()
+        },
+        fazenda_id: funcionarioData.fazenda_id || null
+      };
+      
+      await createFuncionario(funcionarioDataCompleto);
+      alert('Funcionário cadastrado com sucesso!');
+      
+      // Limpar dados do contexto
+      clearFuncionarioData();
+      
+      // Navegar para home ou página de sucesso
+      navigate("/");
+    } catch (err) {
+      setError(err.message || 'Erro ao cadastrar funcionário');
+      console.error('Erro ao cadastrar funcionário:', err);
+    }
+  }
 
   return (
     <div>
@@ -172,6 +229,12 @@ const CadastroFuncionario2 = () => {
             </div>
           </div>
 
+          {error && (
+            <div style={{ color: 'red', marginBottom: '10px', padding: '10px', background: '#fee', borderRadius: '4px' }}>
+              {error}
+            </div>
+          )}
+
           {/* Botões */}
           <div className={style.actions}>
             <button
@@ -182,11 +245,12 @@ const CadastroFuncionario2 = () => {
               Voltar
             </button>
             <button
+              onClick={handleCadastrar}
               className={style.primaryBtn}
-              disabled={!isFormValid}
+              disabled={!isFormValid || loading}
               type="button"
             >
-              Cadastrar
+              {loading ? 'Cadastrando...' : 'Cadastrar'}
             </button>
           </div>
         </div>

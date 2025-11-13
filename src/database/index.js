@@ -14,8 +14,8 @@ db.version(1).stores({
 // (necessário para usar orderBy('createdAt') sem erro de SchemaError)
 db.version(2).stores({
   plantas: '++id, codigo_individual, especie, data_plantio, situacao, ultima_colheita_peso, data_ultima_colheita, createdAt, updatedAt',
-  fazendas: '++id, nome, localizacao, responsavel',
-  funcionarios: '++id, nome, cpf, cargo, fazenda_id'
+  fazendas: '++id, nome, cnpj, proprietario, createdAt, updatedAt',
+  funcionarios: '++id, nome, cpf, email, usuario, fazenda_id, createdAt, updatedAt'
 });
 
 // Definindo os tipos de dados para TypeScript-like intellisense

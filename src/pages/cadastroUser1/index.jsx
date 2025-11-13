@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../assets/Logo.png";
 import cacau from "../../public/cacau.png";
 import Header from "../../components/Header";
@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import style from "./style.module.css";
 import { LockKeyhole, Mail, PencilLine, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useFuncionarioContext } from "../../context/FuncionarioContext";
 
 const WelcomeLeft = () => {
   return (
@@ -23,11 +24,25 @@ const WelcomeLeft = () => {
 };
 
 export default function CadastroFuncionario() {
-  const [nome, setNome] = useState("")
-  const [usuario, setUsuario] = useState("")
-  const [email, setEmail] = useState("")
-  const [senha, setSenha] = useState("")
-  const [confirmarSenha, setConfirmarSenha] = useState("")
+  const { funcionarioData, updateFuncionarioData } = useFuncionarioContext();
+  const navigate = useNavigate();
+  
+  const [nome, setNome] = useState(funcionarioData.nome || "")
+  const [usuario, setUsuario] = useState(funcionarioData.usuario || "")
+  const [email, setEmail] = useState(funcionarioData.email || "")
+  const [senha, setSenha] = useState(funcionarioData.senha || "")
+  const [confirmarSenha, setConfirmarSenha] = useState(funcionarioData.confirmarSenha || "")
+
+  // Salvar dados no contexto sempre que houver mudanças
+  useEffect(() => {
+    updateFuncionarioData({
+      nome,
+      usuario,
+      email,
+      senha,
+      confirmarSenha
+    });
+  }, [nome, usuario, email, senha, confirmarSenha, updateFuncionarioData]);
 
   const isNome = nome.trim().length > 0
   const isUsuario = usuario.trim().length > 0
@@ -36,8 +51,6 @@ export default function CadastroFuncionario() {
   const isConfirmarSenha = confirmarSenha.trim().length > 5 && confirmarSenha === senha
 
   const isFormValid = isNome && isUsuario && isEmail && isSenha && isConfirmarSenha
-
-  const navigate = useNavigate();
 
   return (
     <>
