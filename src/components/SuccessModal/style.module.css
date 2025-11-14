@@ -1,0 +1,124 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: linear-gradient(135deg, #c95b00 0%, #cd6003 100%);
+  border-radius: 24px;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease-out;
+  max-width: 400px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.checkmark {
+  width: 100px;
+  height: 100px;
+  background: #4CAF50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  animation: scaleIn 0.5s ease-out 0.2s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.message {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  font-family: var(--botton-font, 'Baloo', cursive);
+  line-height: 1.4;
+}
+
+.closeBtn {
+  margin-top: 20px !important;
+  padding: 12px 32px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--botton-font, 'Baloo', cursive);
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.closeBtn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .modal {
+    margin: 0 20px;
+    padding: 32px 24px;
+  }
+
+  .checkmark {
+    width: 80px;
+    height: 80px;
+  }
+
+  .checkmark svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .message {
+    font-size: 18px;
+  }
+}

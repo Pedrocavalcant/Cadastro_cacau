@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import Body from "../../components/Body";
 import Logo from "../../assets/Logo.png";
 import Footer from "../../components/Footer";
+import SuccessModal from "../../components/SuccessModal";
 import cacau from "../../public/cacau.png";
 import { Upload } from "lucide-react";
 import style from "./style.module.css";
@@ -25,6 +26,7 @@ export default function CadastroPlanta4() {
   const { plantaData, updatePlantaData } = usePlantaContext();
   const { createPlanta } = usePlantas();
   const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const inputRef = useRef(null);
   const [file, setFile] = useState(plantaData.qr_code || null);
@@ -73,9 +75,8 @@ export default function CadastroPlanta4() {
       // Salva todos os dados no banco
       await createPlanta(finalData);
       
-      // Redireciona para a home com mensagem de sucesso
-      alert('Planta cadastrada com sucesso!');
-      navigate("/");
+      setShowSuccess(true);
+      setTimeout(() => navigate("/"), 3500);
     } catch (error) {
       console.error('Erro ao salvar planta:', error);
       alert('Erro ao salvar planta. Por favor, tente novamente.');
@@ -87,6 +88,13 @@ export default function CadastroPlanta4() {
   return (
     <>
       <Header />
+      {showSuccess && (
+        <SuccessModal 
+          message="Planta cadastrada com sucesso!" 
+          onClose={() => navigate("/")}
+          autoCloseDuration={3000}
+        />
+      )}
       <Body left={<WelcomeLeft />} bgImage={cacau}>
         <div className={style.card}>
           <h1 className={style.title}>Produtividade</h1>

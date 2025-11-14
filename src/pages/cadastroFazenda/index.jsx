@@ -3,6 +3,7 @@ import Logo from "../../assets/Logo.png"
 import cacau from "../../public/cacau.png"
 import Header from "../../components/Header"
 import Body from "../../components/Body"
+import SuccessModal from "../../components/SuccessModal"
 import style from "./style.module.css"
 import { useNavigate } from "react-router-dom"
 import { useFazendas } from "../../hooks/useFazendas.js"
@@ -30,6 +31,7 @@ export default function CadastroFazenda() {
   const [sistemaProdutivo, setSistemaProdutivo] = useState("")
   const [divisaoPlantio, setDivisaoPlantio] = useState("")
   const [error, setError] = useState(null)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const isNomeFazenda = nomeFazenda.trim().length > 0
   const isCnpj = cnpj.trim().length > 13
@@ -67,7 +69,7 @@ export default function CadastroFazenda() {
       };
       
       await createFazenda(fazendaData);
-      alert('Fazenda cadastrada com sucesso!');
+      setShowSuccess(true);
       
       // Limpar formulário
       setNomeFazenda("");
@@ -78,8 +80,8 @@ export default function CadastroFazenda() {
       setSistemaProdutivo("");
       setDivisaoPlantio("");
       
-      // Opcional: navegar para home
-      // navigate("/");
+      // Navegar após 3.5 segundos
+      setTimeout(() => navigate("/"), 3500);
     } catch (err) {
       setError(err.message || 'Erro ao cadastrar fazenda');
       console.error('Erro ao cadastrar fazenda:', err);
@@ -88,6 +90,13 @@ export default function CadastroFazenda() {
   return (
     <>
       <Header />
+      {showSuccess && (
+        <SuccessModal 
+          message="Fazenda cadastrada com sucesso!" 
+          onClose={() => navigate("/")}
+          autoCloseDuration={3000}
+        />
+      )}
       <Body left={<WelcomeLeft />} bgImage={cacau}>
         <div className={style.containerInput}>
           {/* Linha 1 */}

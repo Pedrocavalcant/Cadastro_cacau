@@ -4,6 +4,7 @@ import cacau from "../../public/cacau.png";
 import Header from "../../components/Header";
 import Body from "../../components/Body";
 import Footer from "../../components/Footer";
+import SuccessModal from "../../components/SuccessModal";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import { useFuncionarioContext } from "../../context/FuncionarioContext";
@@ -22,6 +23,7 @@ const CadastroFuncionario2 = () => {
   const [cidade, setCidade] = useState(funcionarioData.endereco?.cidade || "");
   const [uf, setUf] = useState(funcionarioData.endereco?.uf || "");
   const [error, setError] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // ===== Funções de máscara =====
   const formatCpf = (value) => {
@@ -108,13 +110,13 @@ const CadastroFuncionario2 = () => {
       };
       
       await createFuncionario(funcionarioDataCompleto);
-      alert('Funcionário cadastrado com sucesso!');
+      setShowSuccess(true);
       
       // Limpar dados do contexto
       clearFuncionarioData();
       
-      // Navegar para home ou página de sucesso
-      navigate("/");
+      // Navegar para home após fechar o modal
+      setTimeout(() => navigate("/"), 3500);
     } catch (err) {
       setError(err.message || 'Erro ao cadastrar funcionário');
       console.error('Erro ao cadastrar funcionário:', err);
@@ -124,6 +126,13 @@ const CadastroFuncionario2 = () => {
   return (
     <div>
       <Header />
+      {showSuccess && (
+        <SuccessModal 
+          message="Funcionário cadastrado com sucesso!" 
+          onClose={() => navigate("/")}
+          autoCloseDuration={3000}
+        />
+      )}
       <Body left={<WelcomeLeft />} bgImage={cacau}>
         <div className={style.containerInput}>
           {/* CPF */}
