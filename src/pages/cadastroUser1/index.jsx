@@ -42,7 +42,7 @@ export default function CadastroFuncionario() {
       senha,
       confirmarSenha
     });
-  }, [nome, usuario, email, senha, confirmarSenha, updateFuncionarioData]);
+  }, [nome, usuario, email, senha, confirmarSenha]);
 
   const isNome = nome.trim().length > 0
   const isUsuario = usuario.trim().length > 0

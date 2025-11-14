@@ -82,7 +82,7 @@ const CadastroFuncionario2 = () => {
         uf: uf.toUpperCase()
       }
     });
-  }, [cpf, celular, rua, numeroCasa, bairro, cidade, uf, updateFuncionarioData]);
+  }, [cpf, celular, rua, numeroCasa, bairro, cidade, uf]);
 
   const handleCadastrar = async () => {
     if (!isFormValid) return;
@@ -138,6 +138,7 @@ const CadastroFuncionario2 = () => {
               value={cpf}
               onChange={(e) => setCpf(formatCpf(e.target.value))}
               maxLength={14} // 000.000.000-00
+              autoComplete="off"
             />
           </div>
 
@@ -153,6 +154,7 @@ const CadastroFuncionario2 = () => {
               value={celular}
               onChange={(e) => setCelular(formatCelular(e.target.value))}
               maxLength={15} // (00) 00000-0000
+              autoComplete="off"
             />
           </div>
 
@@ -167,6 +169,7 @@ const CadastroFuncionario2 = () => {
               id="rua"
               value={rua}
               onChange={(e) => setRua(e.target.value)}
+              autoComplete="off"
             />
           </div>
 
@@ -182,6 +185,7 @@ const CadastroFuncionario2 = () => {
                 id="numCasa"
                 value={numeroCasa}
                 onChange={(e) => setNumeroCasa(e.target.value)}
+                autoComplete="off"
               />
             </div>
 
@@ -195,6 +199,7 @@ const CadastroFuncionario2 = () => {
                 id="bairro"
                 value={bairro}
                 onChange={(e) => setBairro(e.target.value)}
+                autoComplete="off"
               />
             </div>
           </div>
@@ -211,6 +216,7 @@ const CadastroFuncionario2 = () => {
                 id="cidade"
                 value={cidade}
                 onChange={(e) => setCidade(e.target.value)}
+                autoComplete="off"
               />
             </div>
 
@@ -225,6 +231,7 @@ const CadastroFuncionario2 = () => {
                 value={uf.toUpperCase()} // força letras maiúsculas
                 onChange={(e) => setUf(e.target.value)}
                 maxLength={2}
+                autoComplete="off"
               />
             </div>
           </div>
