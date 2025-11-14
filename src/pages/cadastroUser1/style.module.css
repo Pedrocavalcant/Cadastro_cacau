@@ -92,6 +92,11 @@
   transform: translateY(1px);
 }
 
+.buttonNext:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 /* ===== Responsividade (mantém proporção visual) ===== */
 @media (max-width: 1080px) {
   .containerInput {

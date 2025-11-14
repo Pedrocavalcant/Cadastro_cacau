@@ -84,6 +84,11 @@
   transform: translateY(1px);
 }
 
+.primaryBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 /* ====== RESPONSIVO (mantém proporções do mock) ====== */
 @media (max-width: 1080px) {
   .containerInput {

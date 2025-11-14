@@ -116,6 +116,11 @@
   transform: translateY(1px);
 }
 
+.primaryBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 /* Responsivo */
 @media (max-width: 860px) {
   .card {

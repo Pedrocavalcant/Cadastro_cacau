@@ -173,6 +173,11 @@
   transform: translateY(1px);
 }
 
+.primaryBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 /* Responsividade */
 @media (max-width: 860px) {
   .uploadBar,
