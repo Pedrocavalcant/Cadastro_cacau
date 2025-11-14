@@ -103,7 +103,7 @@ export default function CadastroFazenda() {
           <div className={style.wrapper}>
             <div className={style.field}>
               <label className={style.labelTitle} htmlFor="nFazenda">
-                Nome da Fazenda
+                Nome da Fazenda <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 id="nFazenda"
@@ -118,7 +118,7 @@ export default function CadastroFazenda() {
 
             <div className={style.field}>
               <label className={style.labelTitle} htmlFor="espPredominante">
-                Espécie Predominante
+                Espécie Predominante <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <select 
               id="espPredominante" 
@@ -141,7 +141,7 @@ export default function CadastroFazenda() {
           <div className={style.wrapper}>
             <div className={style.field}>
               <label className={style.labelTitle} htmlFor="cnpj">
-                CNPJ
+                CNPJ <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 id="cnpj"
@@ -156,7 +156,7 @@ export default function CadastroFazenda() {
 
             <div className={style.field}>
               <label className={style.labelTitle} htmlFor="sisProdutivo">
-                Sistema Produtivo
+                Sistema Produtivo <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <select 
               id="sisProdutivo" 
@@ -179,7 +179,7 @@ export default function CadastroFazenda() {
           <div className={style.wrapper}>
             <div className={style.field}>
               <label className={style.labelTitle} htmlFor="proprietario">
-                Proprietário
+                Proprietário <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 id="proprietario"
@@ -194,7 +194,7 @@ export default function CadastroFazenda() {
 
             <div className={style.field}>
               <label className={style.labelTitle} htmlFor="divPlantio">
-                Divisão do plantio
+                Divisão do plantio <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <select 
               id="divPlantio" 
@@ -217,7 +217,7 @@ export default function CadastroFazenda() {
           <div className={style.wrapper}>
             <div className={style.field}>
               <label className={style.labelTitle} htmlFor="areaCultivo">
-                Área de Cultivo
+                Área de Cultivo <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 id="areaCultivo"
@@ -245,6 +245,7 @@ export default function CadastroFazenda() {
             className={style.primaryBtn}
             disabled={!isFormValid || loading}
             onClick={handleCadastrar}
+            title="Campos com * são obrigatórios. Preencha todos para cadastrar."
             >
               {loading ? 'Cadastrando...' : 'Cadastrar'}
             </button>

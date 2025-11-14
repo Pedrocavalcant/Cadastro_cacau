@@ -87,7 +87,7 @@ export default function CadastroPlanta2() {
             {/* Altura */}
             <div className={style.field}>
               <label className={style.label} htmlFor="altura">
-                Altura
+                Altura <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 id="altura"
@@ -102,7 +102,7 @@ export default function CadastroPlanta2() {
             {/* Diâmetro de Copa */}
             <div className={style.field}>
               <label className={style.label} htmlFor="diamCopa">
-                Diâmetro de Copa
+                Diâmetro de Copa <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 id="diamCopa"
@@ -117,7 +117,7 @@ export default function CadastroPlanta2() {
             {/* Diâmetro do tronco */}
             <div className={style.field}>
               <label className={style.label} htmlFor="diamTronco">
-                Diâmetro do tronco
+                Diâmetro do tronco <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 id="diamTronco"
@@ -132,7 +132,7 @@ export default function CadastroPlanta2() {
             {/* Data de plantio */}
             <div className={style.field}>
               <label className={style.label} htmlFor="dataPlantio">
-                Data de plantio
+                Data de plantio <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 type="date"
@@ -146,7 +146,7 @@ export default function CadastroPlanta2() {
             {/* Idade da árvore */}
             <div className={style.field}>
               <label className={style.label} htmlFor="idadeArvore">
-                Idade da árvore
+                Idade da árvore <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 type="date"
@@ -161,7 +161,7 @@ export default function CadastroPlanta2() {
             {/* Lote (com faixa verde) */}
             <div className={style.field}>
               <label className={style.label} htmlFor="lote">
-                Lote
+                Lote <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <div className={style.selectWrap}>
                 <select
@@ -186,7 +186,7 @@ export default function CadastroPlanta2() {
             {/* Localização (com faixa verde) */}
             <div className={style.field}>
               <label className={style.label} htmlFor="localizacao">
-                Localização
+                Localização <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <div className={style.selectWrap}>
                 <select
@@ -224,6 +224,7 @@ export default function CadastroPlanta2() {
               type="button"
               className={style.primaryBtn}
               disabled={!isFormValid}
+              title="Campos com * são obrigatórios. Preencha todos para avançar."
             >
               Avançar
             </button>

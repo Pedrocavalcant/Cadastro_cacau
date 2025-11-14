@@ -138,7 +138,7 @@ const CadastroFuncionario2 = () => {
           {/* CPF */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="cpf">
-              CPF
+              CPF <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <input
               className={style.input}
@@ -154,7 +154,7 @@ const CadastroFuncionario2 = () => {
           {/* Celular */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="celular">
-              Número de celular
+              Número de celular <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <input
               className={style.input}
@@ -170,7 +170,7 @@ const CadastroFuncionario2 = () => {
           {/* Rua */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="rua">
-              Rua
+              Rua <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <input
               className={style.input}
@@ -186,7 +186,7 @@ const CadastroFuncionario2 = () => {
           <div className={style.row}>
             <div className={style.field} style={{ flex: 0.42 }}>
               <label className={style.labelTitle} htmlFor="numCasa">
-                Nº da Casa
+                Nº da Casa <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 className={style.input}
@@ -200,7 +200,7 @@ const CadastroFuncionario2 = () => {
 
             <div className={style.field} style={{ flex: 0.58 }}>
               <label className={style.labelTitle} htmlFor="bairro">
-                Bairro
+                Bairro <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 className={style.input}
@@ -217,7 +217,7 @@ const CadastroFuncionario2 = () => {
           <div className={style.row}>
             <div className={style.field} style={{ flex: 0.62 }}>
               <label className={style.labelTitle} htmlFor="cidade">
-                Cidade
+                Cidade <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 className={style.input}
@@ -231,7 +231,7 @@ const CadastroFuncionario2 = () => {
 
             <div className={style.field} style={{ flex: 0.38 }}>
               <label className={style.labelTitle} htmlFor="uf">
-                UF
+                UF <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
                 className={style.input}
@@ -265,6 +265,7 @@ const CadastroFuncionario2 = () => {
               className={style.primaryBtn}
               disabled={!isFormValid || loading}
               type="button"
+              title="Campos com * são obrigatórios. Preencha todos para cadastrar."
             >
               {loading ? 'Cadastrando...' : 'Cadastrar'}
             </button>

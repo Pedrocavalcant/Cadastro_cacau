@@ -150,7 +150,7 @@ export default function CadastroPlanta3() {
 
             {/* Adubo */}
             <section className={style.block}>
-              <div className={style.legend}>Adubo</div>
+              <div className={style.legend}>Adubo <span style={{ color: '#e74c3c' }}>*</span></div>
               <div className={style.fieldNarrow}>
                 <select
                   className={`${style.select} ${
@@ -174,7 +174,7 @@ export default function CadastroPlanta3() {
             <section className={style.block}>
               <div className={style.twoCol}>
                 <div className={style.field}>
-                  <label className={style.label}>Data da adubação</label>
+                  <label className={style.label}>Data da adubação <span style={{ color: '#e74c3c' }}>*</span></label>
                   <input
                     type="date"
                     className={style.input}
@@ -196,7 +196,7 @@ export default function CadastroPlanta3() {
                 </div>
 
                 <div className={style.field}>
-                  <label className={style.label}>Data da última inspeção</label>
+                  <label className={style.label}>Data da última inspeção <span style={{ color: '#e74c3c' }}>*</span></label>
                   <input
                     type="date"
                     className={style.input}
@@ -244,6 +244,7 @@ export default function CadastroPlanta3() {
                 disabled={!isFormValid}
                 type="button"
                 className={style.primaryBtn}
+                title="Campos com * são obrigatórios. Preencha todos para avançar."
               >
                 Avançar
               </button>

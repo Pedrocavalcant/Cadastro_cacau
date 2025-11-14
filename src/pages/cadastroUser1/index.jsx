@@ -60,7 +60,7 @@ export default function CadastroFuncionario() {
           {/* Nome */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="nome">
-              Nome Completo
+              Nome Completo <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <div className={style.inputWrapper}>
               <PencilLine className={style.icon} size={18} />
@@ -77,7 +77,7 @@ export default function CadastroFuncionario() {
           {/* Usuário */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="usuario">
-              Usuário
+              Usuário <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <div className={style.inputWrapper}>
               <User className={style.icon} size={18} />
@@ -94,7 +94,7 @@ export default function CadastroFuncionario() {
           {/* E-mail */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="email">
-              E-mail
+              E-mail <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <div className={style.inputWrapper}>
               <Mail className={style.icon} size={18} />
@@ -111,7 +111,7 @@ export default function CadastroFuncionario() {
           {/* Senha */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="senha">
-              Senha
+              Senha <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <div className={style.inputWrapper}>
               <LockKeyhole className={style.icon} size={18} />
@@ -128,7 +128,7 @@ export default function CadastroFuncionario() {
           {/* Confirmar Senha */}
           <div className={style.field}>
             <label className={style.labelTitle} htmlFor="conf_senha">
-              Confirmar Senha
+              Confirmar Senha <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <div className={style.inputWrapper}>
               <LockKeyhole className={style.icon} size={18} />
@@ -149,6 +149,7 @@ export default function CadastroFuncionario() {
               className={style.buttonNext}
               type="button"
               disabled={!isFormValid}
+              title="Campos com * são obrigatórios. Preencha todos para prosseguir."
             >
               Proximo
             </button>

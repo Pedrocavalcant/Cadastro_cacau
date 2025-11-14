@@ -92,7 +92,7 @@ export default function CadastroPlanta() {
 
           {/* Código Individual */}
           <section className={style.block}>
-            <label className={style.label} htmlFor="codigo">Código Individual</label>
+            <label className={style.label} htmlFor="codigo">Código Individual <span style={{ color: '#e74c3c' }}>*</span></label>
             <input
               id="codigo"
               className={style.input}
@@ -106,7 +106,7 @@ export default function CadastroPlanta() {
           {/* Espécie */}
           <section className={style.block}>
             <label className={style.label} htmlFor="especie">
-              Espécie
+              Espécie <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <div className={style.selectWrap}>
               <select
@@ -143,6 +143,7 @@ export default function CadastroPlanta() {
               type="button"
               className={style.primaryBtn}
               disabled={!isFormValid}
+              title="Campos com * são obrigatórios. Preencha todos para avançar."
             >
               Avançar
             </button>

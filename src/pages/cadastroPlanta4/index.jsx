@@ -131,7 +131,7 @@ export default function CadastroPlanta4() {
           {/* Última colheita (quantidade) */}
           <section className={style.block}>
             <label className={style.label} htmlFor="qtd">
-              Última colheita
+              Última colheita <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <input
               type="text"
@@ -147,7 +147,7 @@ export default function CadastroPlanta4() {
           {/* Data da última colheita */}
           <section className={style.block}>
             <label className={style.label} htmlFor="data">
-              Última colheita
+              Última colheita <span style={{ color: '#e74c3c' }}>*</span>
             </label>
             <input
               type="date"
@@ -173,6 +173,7 @@ export default function CadastroPlanta4() {
               onClick={handleSubmit}
               disabled={!isFormValid || loading}
               className={style.primaryBtn}
+              title="Campos com * são obrigatórios. Preencha todos para cadastrar."
             >
               {loading ? 'Salvando...' : 'Concluir Cadastro'}
             </button>
