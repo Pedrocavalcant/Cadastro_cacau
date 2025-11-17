@@ -8,6 +8,8 @@ import { Upload, QrCode } from "lucide-react";
 import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import { usePlantaContext } from "../../context/PlantaContext";
+import { usePlantas } from "../../hooks/usePlantas";
+import { gerarCodigoAutoIncrement } from "../../utils/codigoAutoIncrement";
 
 const WelcomeLeft = () => {
   return (
@@ -23,10 +25,22 @@ const WelcomeLeft = () => {
 export default function CadastroPlanta() {
   const inputRef = useRef(null);
   const navigate = useNavigate();
-  const { plantaData, updatePlantaData } = usePlantaContext();
-  const [files, setFiles] = useState(plantaData.imagens || []);
-  const [especie, setEspecie] = useState(plantaData.especie || "");
-  const [codigo, setCodigo] = useState(plantaData.codigo_individual || "");
+  const { plantaData, updatePlantaData, resetPlantaData } = usePlantaContext();
+  const { plantas } = usePlantas();
+  const [files, setFiles] = useState([]);
+  const [especie, setEspecie] = useState("");
+  const [codigo, setCodigo] = useState("");
+
+  // Resetar dados ao montar o componente e gerar código imediatamente
+  useEffect(() => {
+    console.log('[CadastroPlanta] Componente montado, resetando contexto e gerando novo código');
+    resetPlantaData();
+    
+    // Gera código imediatamente
+    const novoCodifo = gerarCodigoAutoIncrement('planta');
+    console.log('[CadastroPlanta] Código gerado:', novoCodifo);
+    setCodigo(novoCodifo);
+  }, [resetPlantaData]);
 
   const isEspecie = especie !== "";
   const isCodigo = codigo !== "";
@@ -40,7 +54,7 @@ export default function CadastroPlanta() {
       especie,
       codigo_individual: codigo
     });
-  }, [files, especie, codigo]);
+  }, [files, especie, codigo, updatePlantaData]);
 
   function onPick() {
     inputRef.current?.click();
@@ -92,14 +106,14 @@ export default function CadastroPlanta() {
 
           {/* Código Individual */}
           <section className={style.block}>
-            <label className={style.label} htmlFor="codigo">Código Individual <span style={{ color: '#e74c3c' }}>*</span></label>
+            <label className={style.label} htmlFor="codigo">Código da Planta <span style={{ color: '#e74c3c' }}>*</span></label>
             <input
               id="codigo"
               className={style.input}
               type="text"
-              placeholder="Digite o código da planta"
               value={codigo}
-              onChange={(e) => setCodigo(e.target.value)}
+              disabled
+              placeholder="Código gerado automaticamente"
             />
           </section>
 

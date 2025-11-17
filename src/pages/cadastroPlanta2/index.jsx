@@ -8,6 +8,7 @@ import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import formatarDecimal from "../../utils/maskDoisdigitos";
 import { usePlantaContext } from "../../context/PlantaContext";
+import { calculateAge } from "../../utils/calculateAge";
 
 const WelcomeLeft = () => (
   <>
@@ -31,7 +32,13 @@ export default function CadastroPlanta2() {
   const [dataPlantio, setDataPlantio] = useState(plantaData.data_plantio || "");
   const [idadeArvore, setIdadeArvore] = useState(plantaData.idade_arvore || "");
 
-  // Salvar dados no contexto sempre que houver mudanças
+  // Calcular idade automaticamente quando a data de plantio mudar
+  useEffect(() => {
+    const novaIdade = calculateAge(dataPlantio);
+    setIdadeArvore(novaIdade);
+  }, [dataPlantio]);
+
+  // Salvar dados no contexto sempre que houver mudanças (EXCETO no handleNavigate)
   useEffect(() => {
     updatePlantaData({
       lote,
@@ -43,7 +50,7 @@ export default function CadastroPlanta2() {
       data_plantio: dataPlantio,
       idade_arvore: idadeArvore
     });
-  }, [lote, localizacao, tipoMuda, altura, diametroCopa, diametroTronco, dataPlantio, idadeArvore]);
+  }, [lote, localizacao, tipoMuda, altura, diametroCopa, diametroTronco, dataPlantio, idadeArvore, updatePlantaData]);
 
   const isLote = lote !== "";
   const isLocalizacao = localizacao !== "";
@@ -149,12 +156,12 @@ export default function CadastroPlanta2() {
                 Idade da árvore <span style={{ color: '#e74c3c' }}>*</span>
               </label>
               <input
-                type="date"
+                type="text"
                 id="idadeArvore"
                 className={style.input}
                 value={idadeArvore}
-                onChange={(e) => setIdadeArvore(e.target.value)}
-                
+                disabled
+                placeholder="Será calculada automaticamente"
               />
             </div>
 
@@ -220,7 +227,10 @@ export default function CadastroPlanta2() {
               Voltar
             </button>
             <button
-              onClick={() => navigate("/cadastro/planta/3")}
+              onClick={() => {
+                console.log('[CadastroPlanta2] Navegando para tela 3');
+                navigate("/cadastro/planta/3");
+              }}
               type="button"
               className={style.primaryBtn}
               disabled={!isFormValid}

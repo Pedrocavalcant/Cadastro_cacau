@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Logo from "../../assets/Logo.png"
 import cacau from "../../public/cacau.png"
 import Header from "../../components/Header"
@@ -7,6 +7,7 @@ import SuccessModal from "../../components/SuccessModal"
 import style from "./style.module.css"
 import { useNavigate } from "react-router-dom"
 import { useFazendas } from "../../hooks/useFazendas.js"
+import { gerarCodigoAutoIncrement } from "../../utils/codigoAutoIncrement"
 
 const WelcomeLeft = () => {
   return (
@@ -20,9 +21,10 @@ const WelcomeLeft = () => {
 }
 
 export default function CadastroFazenda() {
-  const { createFazenda, loading } = useFazendas()
+  const { createFazenda, loading, fazendas } = useFazendas()
   const navigate = useNavigate()
   
+  const [codigo, setCodigo] = useState("")
   const [nomeFazenda, setNomeFazenda] = useState("")
   const [cnpj, setCnpj] = useState("")
   const [proprietario, setProprietario] = useState("")
@@ -32,6 +34,14 @@ export default function CadastroFazenda() {
   const [divisaoPlantio, setDivisaoPlantio] = useState("")
   const [error, setError] = useState(null)
   const [showSuccess, setShowSuccess] = useState(false)
+
+  // Gerar código auto-increment ao montar o componente
+  useEffect(() => {
+    // Gera código imediatamente
+    const novoCodifo = gerarCodigoAutoIncrement('fazenda');
+    console.log('[CadastroFazenda] Código gerado:', novoCodifo);
+    setCodigo(novoCodifo);
+  }, []);
 
   const isNomeFazenda = nomeFazenda.trim().length > 0
   const isCnpj = cnpj.trim().length > 13
@@ -59,6 +69,7 @@ export default function CadastroFazenda() {
     setError(null);
     try {
       const fazendaData = {
+        codigo,
         nome: nomeFazenda.trim(),
         cnpj: cnpj.replace(/\D/g, ''),
         proprietario: proprietario.trim(),
@@ -99,6 +110,22 @@ export default function CadastroFazenda() {
       )}
       <Body left={<WelcomeLeft />} bgImage={cacau}>
         <div className={style.containerInput}>
+          {/* Código da Fazenda */}
+          <div className={style.field}>
+            <label className={style.labelTitle} htmlFor="codigo">
+              Código da Fazenda
+            </label>
+            <input
+              id="codigo"
+              className={style.input}
+              type="text"
+              autoComplete="off"
+              value={codigo}
+              disabled
+              placeholder="Código gerado automaticamente"
+            />
+          </div>
+
           {/* Linha 1 */}
           <div className={style.wrapper}>
             <div className={style.field}>

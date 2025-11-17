@@ -50,77 +50,82 @@ export default function RelatorioPlanta() {
               <>
                 <div className={style.field}>
                   <label className={style.label}>Código</label>
-                  <input type="text" className={style.input} value={planta.identificacao?.codigo_individual || ''} readOnly />
-                </div>
-
-                <div className={style.field}>
-                  <label className={style.label}>Altura</label>
-                  <input type="text" className={style.input} value={planta.detalhes_plantio?.altura_metros ?? ''} readOnly />
-                </div>
-
-                <div className={style.field}>
-                  <label className={style.label}>Lote</label>
-                  <input type="text" className={style.input} value={planta.detalhes_plantio?.lote || ''} readOnly />
+                  <input type="text" className={style.input} value={planta.codigo_individual || planta.identificacao?.codigo_individual || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Espécie</label>
-                  <input type="text" className={style.input} value={planta.identificacao?.especie || ''} readOnly />
-                </div>
-
-                <div className={style.field}>
-                  <label className={style.label}>Diâmetro de copa</label>
-                  <input type="text" className={style.input} value={planta.detalhes_plantio?.diametro_copa_metros ?? ''} readOnly />
-                </div>
-
-                <div className={style.field}>
-                  <label className={style.label}>Localização</label>
-                  <input type="text" className={style.input} value={planta.detalhes_plantio?.localizacao || ''} readOnly />
+                  <input type="text" className={style.input} value={planta.especie || planta.identificacao?.especie || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Tipo da muda</label>
-                  <input type="text" className={style.input} value={planta.detalhes_plantio?.tipo_muda || ''} readOnly />
+                  <input type="text" className={style.input} value={planta.tipo_muda || planta.detalhes_plantio?.tipo_muda || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
-                  <label className={style.label}>Diâmetro de tronco</label>
-                  <input type="text" className={style.input} value={planta.detalhes_plantio?.diametro_tronco_metros ?? ''} readOnly />
+                  <label className={style.label}>Lote</label>
+                  <input type="text" className={style.input} value={planta.lote || planta.detalhes_plantio?.lote || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
-                  <label className={style.label}>Situação</label>
-                  <input type="text" className={style.input} value={planta.status?.situacao || ''} readOnly />
+                  <label className={style.label}>Localização</label>
+                  <input type="text" className={style.input} value={planta.localizacao || planta.detalhes_plantio?.localizacao || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Data do plantio</label>
-                  <input type="date" className={style.input} value={planta.detalhes_plantio?.data_plantio || ''} readOnly />
+                  <input type="date" className={style.input} value={planta.data_plantio || planta.detalhes_plantio?.data_plantio || ''} readOnly />
+                </div>
+
+                <div className={style.field}>
+                  <label className={style.label}>Altura</label>
+                  <input type="text" className={style.input} value={planta.altura_metros ?? planta.detalhes_plantio?.altura_metros ?? ''} readOnly />
+                </div>
+
+                <div className={style.field}>
+                  <label className={style.label}>Diâmetro de copa</label>
+                  <input type="text" className={style.input} value={planta.diametro_copa_metros ?? planta.detalhes_plantio?.diametro_copa_metros ?? ''} readOnly />
+                </div>
+
+                <div className={style.field}>
+                  <label className={style.label}>Diâmetro de tronco</label>
+                  <input type="text" className={style.input} value={planta.diametro_tronco_metros ?? planta.detalhes_plantio?.diametro_tronco_metros ?? ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Idade</label>
-                  <input type="text" className={style.input} value={planta.detalhes_plantio?.idade_arvore || ''} readOnly />
+                  <input type="text" className={style.input} value={planta.idade_arvore || planta.detalhes_plantio?.idade_arvore || ''} readOnly />
+                </div>
+
+                <div className={style.field}>
+                  <label className={style.label}>Situação</label>
+                  <input type="text" className={style.input} value={planta.situacao || planta.status?.situacao || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Adubo</label>
-                  <input type="text" className={style.input} value={planta.status?.adubo || ''} readOnly />
+                  <input type="text" className={style.input} value={planta.adubo || planta.status?.adubo || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Última adubação</label>
-                  <input type="date" className={style.input} value={planta.status?.data_adubacao || ''} readOnly />
+                  <input type="date" className={style.input} value={planta.data_adubacao || planta.status?.data_adubacao || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Última inspeção</label>
-                  <input type="date" className={style.input} value={planta.status?.data_ultima_inspecao || ''} readOnly />
+                  <input type="date" className={style.input} value={planta.data_ultima_inspecao || planta.status?.data_ultima_inspecao || ''} readOnly />
                 </div>
 
                 <div className={style.field}>
                   <label className={style.label}>Produtividade</label>
-                  <input type="text" className={style.input} value={planta.produtividade?.ultima_colheita_peso ?? ''} readOnly />
+                  <input type="text" className={style.input} value={planta.ultima_colheita_peso ?? planta.produtividade?.ultima_colheita_peso ?? ''} readOnly />
+                </div>
+
+                <div className={style.field}>
+                  <label className={style.label}>Data da última colheita</label>
+                  <input type="date" className={style.input} value={planta.data_ultima_colheita || planta.produtividade?.data_ultima_colheita || ''} readOnly />
                 </div>
               </>
             ) : (
@@ -132,7 +137,7 @@ export default function RelatorioPlanta() {
             <label className={style.label}>Observações</label>
             <textarea 
               className={style.textarea} 
-              value={planta?.observacoes || ''} 
+              value={planta?.observacoes || planta?.status?.observacoes || ''} 
               readOnly
             ></textarea>
           </div>

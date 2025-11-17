@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const FuncionarioContext = createContext();
 
@@ -24,7 +24,7 @@ export function FuncionarioProvider({ children }) {
     fazenda_id: null
   });
 
-  const updateFuncionarioData = (newData) => {
+  const updateFuncionarioData = useCallback((newData) => {
     setFuncionarioData(prev => {
       // Se newData contém endereco, mescla corretamente
       if (newData.endereco) {
@@ -39,9 +39,9 @@ export function FuncionarioProvider({ children }) {
         ...newData
       };
     });
-  };
+  }, []);
 
-  const clearFuncionarioData = () => {
+  const clearFuncionarioData = useCallback(() => {
     setFuncionarioData({
       nome: '',
       usuario: '',
@@ -59,7 +59,7 @@ export function FuncionarioProvider({ children }) {
       },
       fazenda_id: null
     });
-  };
+  }, []);
 
   return (
     <FuncionarioContext.Provider value={{ funcionarioData, updateFuncionarioData, clearFuncionarioData }}>

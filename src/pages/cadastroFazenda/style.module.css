@@ -56,6 +56,12 @@
   box-shadow: 0 0 3px var(--color-orange);
 }
 
+.input:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  background-color: #d4c5b9;
+}
+
 /* Select “pill” com caret */
 .select {
   width: 100%;

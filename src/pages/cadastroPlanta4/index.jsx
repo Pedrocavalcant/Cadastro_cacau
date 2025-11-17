@@ -45,7 +45,7 @@ export default function CadastroPlanta4() {
       ultima_colheita_peso: qtdColheita,
       data_ultima_colheita: dtColheita
     });
-  }, [file, qtdColheita, dtColheita]);
+  }, [file, qtdColheita, dtColheita, updatePlantaData]);
 
   function onPick() {
     inputRef.current?.click();
@@ -69,7 +69,11 @@ export default function CadastroPlanta4() {
         data_ultima_colheita: dtColheita
       };
       
-      console.log('Dados completos antes de salvar:', finalData);
+      console.log('========== DADOS FINAIS ANTES DE SALVAR ==========');
+      console.log('Dados do plantaData (do contexto):', plantaData);
+      console.log('Dados finais (com screen 4):', finalData);
+      console.log('');
+      
       updatePlantaData(finalData);
 
       // Salva todos os dados no banco

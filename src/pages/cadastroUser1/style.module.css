@@ -41,13 +41,37 @@
   transform: translateY(-50%);
   color: var(--color-icon, #9a5a2a);
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botão para mostrar/ocultar senha */
+.eyeButton {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-icon, #9a5a2a);
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.eyeButton:hover {
+  color: var(--color-orange, #e18024);
 }
 
 /* ===== Input estilo "pill" ===== */
 .input {
   width: 100%;
   height: 46px;
-  padding: 10px 14px 10px 42px; /* espaço pro ícone */
+  padding: 10px 46px 10px 42px; /* espaço pro ícone e botão de olho */
   font-size: 16px;
   border-radius: 22px;
   border: 1px solid transparent;

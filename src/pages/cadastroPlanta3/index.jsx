@@ -53,7 +53,7 @@ export default function CadastroPlanta3() {
       data_ultima_inspecao: dataInspecao,
       observacoes: obs
     });
-  }, [situacao, doenca, tratamento, adubo, naoAdubado, dataAdubacao, dataInspecao, obs]);
+  }, [situacao, doenca, tratamento, adubo, naoAdubado, dataAdubacao, dataInspecao, obs, updatePlantaData]);
 
   return (
     <>

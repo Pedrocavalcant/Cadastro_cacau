@@ -51,6 +51,12 @@
   color: rgba(0, 0, 0, 0.65);
 }
 
+.input:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  background-color: #d4917a;
+}
+
 /* Select com caret */
 .selectWrap {
   display: block;
