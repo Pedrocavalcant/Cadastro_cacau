@@ -64,8 +64,8 @@ export default function CadastroFuncionario() {
   const isNome = nome.trim().length > 0
   const isUsuario = usuario.trim().length > 0
   const isEmail = email.trim().length > 0 && email.includes("@")
-  const isSenha = senha.trim().length > 5 
-  const isConfirmarSenha = confirmarSenha.trim().length > 5 && confirmarSenha === senha
+  const isSenha = senha.trim().length >= 8 
+  const isConfirmarSenha = confirmarSenha.trim().length >= 8 && confirmarSenha === senha
 
   const isFormValid = isNome && isUsuario && isEmail && isSenha && isConfirmarSenha
 
@@ -170,6 +170,34 @@ export default function CadastroFuncionario() {
                 )}
               </button>
             </div>
+            {/* Indicador de força da senha */}
+            {senha.trim().length > 0 && senha.trim().length < 8 && (
+              <div style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: '#e74c3c',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <span>🔓 Mínimo 8 dígitos</span>
+                <span style={{ fontWeight: 'bold' }}>
+                  ({8 - senha.trim().length} faltando)
+                </span>
+              </div>
+            )}
+            {senha.trim().length >= 8 && (
+              <div style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: '#27ae60',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <span>✅ Senha válida!</span>
+              </div>
+            )}
           </div>
 
           {/* Confirmar Senha */}
@@ -199,6 +227,36 @@ export default function CadastroFuncionario() {
                 )}
               </button>
             </div>
+            {/* Indicador de força da senha confirmada */}
+            {confirmarSenha.trim().length > 0 && confirmarSenha.trim().length < 8 && (
+              <div style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: '#e74c3c',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <span>🔓 Mínimo 8 dígitos</span>
+                <span style={{ fontWeight: 'bold' }}>
+                  ({8 - confirmarSenha.trim().length} faltando)
+                </span>
+              </div>
+            )}
+            {confirmarSenha.trim().length >= 8 && (
+              <div style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: confirmarSenha === senha ? '#27ae60' : '#e74c3c',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <span>
+                  {confirmarSenha === senha ? '✅ Senhas combinam!' : '❌ Senhas não combinam'}
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Ações */}
