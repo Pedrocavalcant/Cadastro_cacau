@@ -74,8 +74,21 @@ export class FazendaService {
       }
 
       // Persistência local (fallback)
-      const id = await db.fazendas.add(prepareForDb({ ...normalized, createdAt: new Date(), updatedAt: new Date() }));
-      return id;
+      // Usa 'put' em vez de 'add' para permitir customização do ID com base no CNPJ
+      // Usa CNPJ limpo como ID primário (ex: 12345678000190)
+      const cnpjLimpo = (normalized.cnpj || fazendaData.cnpj || '').replace(/\D/g, '');
+      const fazendaComId = {
+        ...normalized,
+        id: cnpjLimpo || undefined,
+        cnpj: cnpjLimpo,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      
+      console.log('[FazendaService.create] Salvando fazenda com ID (CNPJ limpo):', fazendaComId.id);
+      
+      const resultado = await db.fazendas.put(prepareForDb(fazendaComId));
+      return resultado;
     } catch (error) {
       console.error('Erro ao criar fazenda:', error);
       throw new Error('Falha ao criar fazenda');
@@ -115,8 +128,8 @@ export class FazendaService {
   }
 
   /**
-   * Buscar fazenda por ID
-   * @param {Number} id - ID da fazenda
+   * Buscar fazenda por ID (pode ser CNPJ limpo ou ID numérico)
+   * @param {String|Number} id - ID ou CNPJ limpo da fazenda
    * @returns {Promise<Object|null>} Dados da fazenda ou null se não encontrada
    */
   static async getById(id) {
@@ -135,8 +148,19 @@ export class FazendaService {
         }
       }
 
-      const fazenda = await db.fazendas.get(parseInt(id));
-      return fazenda ? normalizeFazenda(fazenda) : null;
+      // Tenta buscar como string primeiro (CNPJ limpo: 12345678000190)
+      let fazenda = await db.fazendas.get(String(id));
+      if (fazenda) {
+        return normalizeFazenda(fazenda);
+      }
+
+      // Tenta buscar como número (ID numérico legado)
+      fazenda = await db.fazendas.get(parseInt(id));
+      if (fazenda) {
+        return normalizeFazenda(fazenda);
+      }
+
+      return null;
     } catch (error) {
       console.error('Erro ao buscar fazenda por ID:', error);
       throw new Error('Falha ao buscar fazenda');
@@ -144,16 +168,16 @@ export class FazendaService {
   }
 
   /**
-   * Buscar fazenda por CNPJ
-   * @param {String} cnpj - CNPJ da fazenda
+   * Buscar fazenda por código (ex: FA-123456)
+   * @param {String} codigo - Código da fazenda gerado na tela inicial
    * @returns {Promise<Object|null>} Dados da fazenda ou null se não encontrada
    */
-  static async getByCnpj(cnpj) {
+  static async getByCodigo(codigo) {
     try {
       if (API_BASE) {
         try {
           const url = new URL(`${API_BASE.replace(/\/$/, '')}/fazendas`);
-          url.searchParams.set('cnpj', cnpj);
+          url.searchParams.set('codigo', codigo);
           const res = await fetch(url.toString());
           if (!res.ok) throw new Error(`API error: ${res.status}`);
           const results = await res.json();
@@ -163,22 +187,86 @@ export class FazendaService {
           }
           return normalizeFazenda(fazenda) || null;
         } catch (err) {
+          console.warn('Falha ao buscar por código via API, consultando cache local:', err.message);
+        }
+      }
+
+      console.log('[FazendaService.getByCodigo] Buscando fazenda com código:', codigo);
+      
+      // Busca direta pelo ID (que agora é o CNPJ limpo ou código)
+      const fazenda = await db.fazendas.get(String(codigo));
+      if (fazenda) {
+        console.log('[FazendaService.getByCodigo] ✅ Encontrada:', fazenda.nome);
+        return normalizeFazenda(fazenda);
+      }
+      
+      console.warn('[FazendaService.getByCodigo] ❌ Nenhuma fazenda encontrada com código:', codigo);
+      return null;
+    } catch (error) {
+      console.error('Erro ao buscar fazenda por código:', error);
+      throw new Error('Falha ao buscar fazenda');
+    }
+  }
+
+  /**
+   * Buscar fazenda por CNPJ
+   * @param {String} cnpj - CNPJ da fazenda (formatado ou não)
+   * @returns {Promise<Object|null>} Dados da fazenda ou null se não encontrada
+   */
+  static async getByCnpj(cnpj) {
+    try {
+      const cnpjLimpo = (cnpj || '').replace(/\D/g, '');
+      console.log(`[FazendaService.getByCnpj] Buscando com CNPJ original: "${cnpj}" → CNPJ limpo: "${cnpjLimpo}"`);
+
+      if (!cnpjLimpo || cnpjLimpo.length < 14) {
+        console.warn(`[FazendaService.getByCnpj] CNPJ inválido: ${cnpjLimpo}`);
+        return null;
+      }
+
+      if (API_BASE) {
+        try {
+          const url = new URL(`${API_BASE.replace(/\/$/, '')}/fazendas`);
+          url.searchParams.set('cnpj', cnpjLimpo);
+          const res = await fetch(url.toString());
+          if (!res.ok) throw new Error(`API error: ${res.status}`);
+          const results = await res.json();
+          const fazenda = Array.isArray(results) ? results[0] : results;
+          if (fazenda) {
+            try { await db.fazendas.put(prepareForDb(normalizeFazenda(fazenda))); } catch (e) {}
+            console.log('[FazendaService.getByCnpj] Encontrada na API:', fazenda);
+            return normalizeFazenda(fazenda);
+          }
+        } catch (err) {
           console.warn('Falha ao buscar por CNPJ via API, consultando cache local:', err.message);
         }
       }
 
-      const cnpjLimpo = cnpj.replace(/\D/g, '');
-      let fazenda = await db.fazendas.where('cnpj').equals(cnpjLimpo).first();
+      // Busca local com múltiplas estratégias
+      console.log('[FazendaService.getByCnpj] Buscando no cache local...');
       
-      if (!fazenda) {
-        const todasFazendas = await db.fazendas.toArray();
-        fazenda = todasFazendas.find(f => {
-          const fCnpj = (f.cnpj || '').replace(/\D/g, '');
-          return fCnpj === cnpjLimpo;
-        });
+      // Estratégia 1: Busca pelo CNPJ limpo (esperado)
+      let fazenda = await db.fazendas.where('cnpj').equals(cnpjLimpo).first();
+      if (fazenda) {
+        console.log('[FazendaService.getByCnpj] ✅ Encontrada no índice (CNPJ limpo):', fazenda.nome);
+        return normalizeFazenda(fazenda);
+      }
+
+      // Estratégia 2: Varredura completa (fallback)
+      console.log('[FazendaService.getByCnpj] Iniciando varredura completa do DB...');
+      const todasFazendas = await db.fazendas.toArray();
+      console.log(`[FazendaService.getByCnpj] Total de fazendas no DB: ${todasFazendas.length}`);
+      
+      for (let f of todasFazendas) {
+        const fCnpj = (f.cnpj || '').replace(/\D/g, '');
+        console.log(`[FazendaService.getByCnpj] Comparando: "${fCnpj}" === "${cnpjLimpo}" ? ${fCnpj === cnpjLimpo}`);
+        if (fCnpj === cnpjLimpo) {
+          console.log('[FazendaService.getByCnpj] ✅ Match encontrado na varredura:', f.nome);
+          return normalizeFazenda(f);
+        }
       }
       
-      return fazenda ? normalizeFazenda(fazenda) : null;
+      console.warn(`[FazendaService.getByCnpj] ❌ Nenhuma fazenda encontrada com CNPJ: ${cnpjLimpo}`);
+      return null;
     } catch (error) {
       console.error('Erro ao buscar fazenda por CNPJ:', error);
       throw new Error('Falha ao buscar fazenda');

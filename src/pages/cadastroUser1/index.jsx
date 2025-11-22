@@ -58,6 +58,7 @@ export default function CadastroFuncionario() {
       senha,
       confirmarSenha
     });
+    console.log('[CadastroUser1] Salvando no contexto com código:', codigo);
   }, [codigo, nome, usuario, email, senha, confirmarSenha, updateFuncionarioData]);
 
   const isNome = nome.trim().length > 0

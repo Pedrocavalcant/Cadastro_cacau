@@ -106,6 +106,21 @@ export const useFazendas = () => {
     }
   }, []);
 
+  // Buscar fazenda por código (ex: FA-123456)
+  const getFazendaByCodigo = useCallback(async (codigo) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const fazenda = await FazendaService.getByCodigo(codigo);
+      return fazenda;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   // Buscar fazendas com filtros
   const searchFazendas = useCallback(async (filters) => {
     setLoading(true);
@@ -136,6 +151,7 @@ export const useFazendas = () => {
     deleteFazenda,
     getFazendaById,
     getFazendaByCnpj,
+    getFazendaByCodigo,
     searchFazendas,
     clearFilters,
     loadFazendas

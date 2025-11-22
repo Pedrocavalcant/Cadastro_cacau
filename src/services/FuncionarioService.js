@@ -110,8 +110,19 @@ export class FuncionarioService {
       }
 
       // Persistência local (fallback)
-      const id = await db.funcionarios.add(prepareForDb({ ...normalized, createdAt: new Date(), updatedAt: new Date() }));
-      return id;
+      // Usa 'put' em vez de 'add' para permitir customização do ID com base no código
+      // Usa código gerado na primeira tela como ID primário (ex: FU-123456)
+      const funcionarioComId = {
+        ...normalized,
+        id: funcionarioData.codigo || (normalized.cpf || '').replace(/\D/g, '') || undefined,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      
+      console.log('[FuncionarioService.create] Salvando funcionário com ID (código):', funcionarioComId.id);
+      
+      const resultado = await db.funcionarios.put(prepareForDb(funcionarioComId));
+      return resultado;
     } catch (error) {
       console.error('Erro ao criar funcionário:', error);
       throw new Error('Falha ao criar funcionário');
@@ -151,8 +162,8 @@ export class FuncionarioService {
   }
 
   /**
-   * Buscar funcionário por ID
-   * @param {Number} id - ID do funcionário
+   * Buscar funcionário por ID (pode ser código como "FU-123456" ou ID numérico)
+   * @param {String|Number} id - ID ou código do funcionário
    * @returns {Promise<Object|null>} Dados do funcionário ou null se não encontrado
    */
   static async getById(id) {
@@ -171,8 +182,19 @@ export class FuncionarioService {
         }
       }
 
-      const funcionario = await db.funcionarios.get(parseInt(id));
-      return funcionario ? normalizeFuncionario(funcionario) : null;
+      // Tenta buscar como string primeiro (código: FU-123456)
+      let funcionario = await db.funcionarios.get(String(id));
+      if (funcionario) {
+        return normalizeFuncionario(funcionario);
+      }
+
+      // Tenta buscar como número (ID numérico legado)
+      funcionario = await db.funcionarios.get(parseInt(id));
+      if (funcionario) {
+        return normalizeFuncionario(funcionario);
+      }
+
+      return null;
     } catch (error) {
       console.error('Erro ao buscar funcionário por ID:', error);
       throw new Error('Falha ao buscar funcionário');
@@ -180,16 +202,16 @@ export class FuncionarioService {
   }
 
   /**
-   * Buscar funcionário por CPF
-   * @param {String} cpf - CPF do funcionário
+   * Buscar funcionário por código (ex: FU-123456)
+   * @param {String} codigo - Código do funcionário gerado na primeira tela
    * @returns {Promise<Object|null>} Dados do funcionário ou null se não encontrado
    */
-  static async getByCpf(cpf) {
+  static async getByCodigo(codigo) {
     try {
       if (API_BASE) {
         try {
           const url = new URL(`${API_BASE.replace(/\/$/, '')}/funcionarios`);
-          url.searchParams.set('cpf', cpf);
+          url.searchParams.set('codigo', codigo);
           const res = await fetch(url.toString());
           if (!res.ok) throw new Error(`API error: ${res.status}`);
           const results = await res.json();
@@ -199,22 +221,86 @@ export class FuncionarioService {
           }
           return normalizeFuncionario(funcionario) || null;
         } catch (err) {
+          console.warn('Falha ao buscar por código via API, consultando cache local:', err.message);
+        }
+      }
+
+      console.log('[FuncionarioService.getByCodigo] Buscando funcionário com código:', codigo);
+      
+      // Busca direta pelo ID (que agora é o código)
+      const funcionario = await db.funcionarios.get(String(codigo));
+      if (funcionario) {
+        console.log('[FuncionarioService.getByCodigo] ✅ Encontrado:', funcionario.nome);
+        return normalizeFuncionario(funcionario);
+      }
+      
+      console.warn('[FuncionarioService.getByCodigo] ❌ Nenhum funcionário encontrado com código:', codigo);
+      return null;
+    } catch (error) {
+      console.error('Erro ao buscar funcionário por código:', error);
+      throw new Error('Falha ao buscar funcionário');
+    }
+  }
+
+  /**
+   * Buscar funcionário por CPF
+   * @param {String} cpf - CPF do funcionário (formatado ou não)
+   * @returns {Promise<Object|null>} Dados do funcionário ou null se não encontrado
+   */
+  static async getByCpf(cpf) {
+    try {
+      const cpfLimpo = (cpf || '').replace(/\D/g, '');
+      console.log(`[FuncionarioService.getByCpf] Buscando com CPF original: "${cpf}" → CPF limpo: "${cpfLimpo}"`);
+
+      if (!cpfLimpo || cpfLimpo.length < 11) {
+        console.warn(`[FuncionarioService.getByCpf] CPF inválido: ${cpfLimpo}`);
+        return null;
+      }
+
+      if (API_BASE) {
+        try {
+          const url = new URL(`${API_BASE.replace(/\/$/, '')}/funcionarios`);
+          url.searchParams.set('cpf', cpfLimpo);
+          const res = await fetch(url.toString());
+          if (!res.ok) throw new Error(`API error: ${res.status}`);
+          const results = await res.json();
+          const funcionario = Array.isArray(results) ? results[0] : results;
+          if (funcionario) {
+            try { await db.funcionarios.put(prepareForDb(normalizeFuncionario(funcionario))); } catch (e) {}
+            console.log('[FuncionarioService.getByCpf] Encontrado na API:', funcionario);
+            return normalizeFuncionario(funcionario);
+          }
+        } catch (err) {
           console.warn('Falha ao buscar por CPF via API, consultando cache local:', err.message);
         }
       }
 
-      const cpfLimpo = cpf.replace(/\D/g, '');
-      let funcionario = await db.funcionarios.where('cpf').equals(cpfLimpo).first();
+      // Busca local com múltiplas estratégias
+      console.log('[FuncionarioService.getByCpf] Buscando no cache local...');
       
-      if (!funcionario) {
-        const todosFuncionarios = await db.funcionarios.toArray();
-        funcionario = todosFuncionarios.find(f => {
-          const fCpf = (f.cpf || '').replace(/\D/g, '');
-          return fCpf === cpfLimpo;
-        });
+      // Estratégia 1: Busca pelo CPF limpo (esperado)
+      let funcionario = await db.funcionarios.where('cpf').equals(cpfLimpo).first();
+      if (funcionario) {
+        console.log('[FuncionarioService.getByCpf] ✅ Encontrado no índice (CPF limpo):', funcionario.nome);
+        return normalizeFuncionario(funcionario);
+      }
+
+      // Estratégia 2: Varredura completa (fallback)
+      console.log('[FuncionarioService.getByCpf] Iniciando varredura completa do DB...');
+      const todosFuncionarios = await db.funcionarios.toArray();
+      console.log(`[FuncionarioService.getByCpf] Total de funcionários no DB: ${todosFuncionarios.length}`);
+      
+      for (let f of todosFuncionarios) {
+        const fCpf = (f.cpf || '').replace(/\D/g, '');
+        console.log(`[FuncionarioService.getByCpf] Comparando: "${fCpf}" === "${cpfLimpo}" ? ${fCpf === cpfLimpo}`);
+        if (fCpf === cpfLimpo) {
+          console.log('[FuncionarioService.getByCpf] ✅ Match encontrado na varredura:', f.nome);
+          return normalizeFuncionario(f);
+        }
       }
       
-      return funcionario ? normalizeFuncionario(funcionario) : null;
+      console.warn(`[FuncionarioService.getByCpf] ❌ Nenhum funcionário encontrado com CPF: ${cpfLimpo}`);
+      return null;
     } catch (error) {
       console.error('Erro ao buscar funcionário por CPF:', error);
       throw new Error('Falha ao buscar funcionário');

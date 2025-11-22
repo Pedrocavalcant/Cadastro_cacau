@@ -145,8 +145,18 @@ export class PlantaService {
       }
 
       // Persistência local (fallback)
-      const id = await db.plantas.add(prepareForDb({ ...normalized, createdAt: new Date(), updatedAt: new Date() }));
-      return id;
+      // Usa 'put' em vez de 'add' para permitir customização do ID com base no código
+      const plantaComId = {
+        ...normalized,
+        id: normalized.identificacao?.codigo_individual || plantaData.codigo_individual || undefined,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      
+      console.log('[PlantaService.create] Salvando planta com ID:', plantaComId.id);
+      
+      const resultado = await db.plantas.put(prepareForDb(plantaComId));
+      return resultado;
     } catch (error) {
       console.error('Erro ao criar planta:', error);
       throw new Error('Falha ao criar planta');

@@ -106,6 +106,21 @@ export const useFuncionarios = () => {
     }
   }, []);
 
+  // Buscar funcionário por código (ex: FU-123456)
+  const getFuncionarioByCodigo = useCallback(async (codigo) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const funcionario = await FuncionarioService.getByCodigo(codigo);
+      return funcionario;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   // Buscar funcionário por email
   const getFuncionarioByEmail = useCallback(async (email) => {
     setLoading(true);
@@ -166,6 +181,7 @@ export const useFuncionarios = () => {
     deleteFuncionario,
     getFuncionarioById,
     getFuncionarioByCpf,
+    getFuncionarioByCodigo,
     getFuncionarioByEmail,
     getFuncionariosByFazenda,
     searchFuncionarios,

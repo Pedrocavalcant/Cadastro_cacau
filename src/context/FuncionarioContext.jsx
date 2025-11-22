@@ -5,6 +5,7 @@ const FuncionarioContext = createContext();
 export function FuncionarioProvider({ children }) {
   const [funcionarioData, setFuncionarioData] = useState({
     // Dados da primeira tela
+    codigo: '', // Código gerado na primeira tela (ex: FU-123456)
     nome: '',
     usuario: '',
     email: '',
@@ -43,6 +44,7 @@ export function FuncionarioProvider({ children }) {
 
   const clearFuncionarioData = useCallback(() => {
     setFuncionarioData({
+      codigo: '',
       nome: '',
       usuario: '',
       email: '',

@@ -28,23 +28,29 @@ export default function Relatorios() {
   const handlePlaceholder = () => {
     switch (tipoRelatorio) {
       case "Planta":
-        return "Apenas números";
+        return "Código da planta (ex: PL-123456)";
       case "Fazenda":
-        return "Código da fazenda";
+        return "Código da fazenda (ex: FA-123456) ou CNPJ";
       case "Funcionário":
-        return "Código do funcionário";
+        return "Código do funcionário (ex: FU-123456) ou CPF";
       default:
         return "Selecione o tipo de relatório";
     }
   };
 
   const handleBuscar = () => {
+    console.log(`[Relatorios] Buscando ${tipoRelatorio} com código: "${codigo}"`);
+    
     if (tipoRelatorio === "Funcionário") {
-      navigate("/relatorio/funcionario", { state: { codigo } });
+      // Para funcionário, passa o código conforme digitado (pode ser FU-123456 ou CPF)
+      navigate("/relatorio/funcionario", { state: { codigo: codigo } });
     } else if (tipoRelatorio === "Planta") {
-      navigate("/relatorio/planta", { state: { codigo } });
+      // Para planta, passa o código conforme digitado
+      navigate("/relatorio/planta", { state: { codigo: codigo } });
     } else if (tipoRelatorio === "Fazenda") {
-      navigate("/relatorio/fazenda", { state: { codigo } });
+      // Para fazenda, remove formatação do CNPJ
+      const codigoLimpo = codigo.replace(/\D/g, '');
+      navigate("/relatorio/fazenda", { state: { codigo: codigoLimpo } });
     }
   };
 
